@@ -89,7 +89,7 @@
     import store from "@/store";
     import topMenu from "./topMenu";
     import wechatImg from "@/assets/img/wechat.jpg";
-    import qqImg from "@/assets/img/qq.png";
+    import qqImg from "@/assets/img/qq.jpg";
     import logoImg from "@/assets/img/logo.png";
     import chinaImg from "@/assets/img/china.svg";
     import americaImg from "@/assets/img/america.svg";
