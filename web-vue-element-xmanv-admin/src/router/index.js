@@ -31,30 +31,30 @@ export const constantRouterMap = [
 	{
     path: '',  
     component: Layout,
-		redirect: '/index/index',
+		redirect: '/index',
 		hidden:true
-  },
+  	},
 	{ path: '/login',name: 'login',component:() => import('@/page/login'),hidden: true},
 	{ path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
-  { path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
+  	{ path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
 	{
 		path: '/index',
 		name: 'index',
 		component:Layout,
 		meta:{
 			title:'首页',
-		  icon: 'icondashboard',
+		  	icon: 'icondashboard',
 		},
 		noDropdown:true,
 		children:[ 
 			{
-				path:'index', 
+				path:'', 
 				meta:{
 					title:'首页', 
 					icon:'icondashboard',
 				  routerType:'leftmenu'
 				},
-        component: () => import('@/page/index/index'),
+        		component: () => import('@/page/index/index'),
 			}
 		]
 	}
@@ -63,7 +63,7 @@ export const constantRouterMap = [
 	//注册路由
 export default new Router({
 	mode:'history', // 默认为'hash'模式
-	base: '/permission/', // 添加跟目录,对应服务器部署子目录
+	base: '', // 添加跟目录,对应服务器部署子目录
 	routes: constantRouterMap
 })
 
@@ -101,7 +101,7 @@ export const asyncRouterMap = [
 		noDropdown:true,
 		children:[
 			{
-				path:'share', 
+				path:'', 
 				meta:{
 				  title:'分享功能', 
 				  icon:'iconshare',
