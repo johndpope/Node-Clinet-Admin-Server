@@ -4,13 +4,16 @@
  * api配置类
  */
 
-import { ARTICLEAPI, UPLOAD, IMGURL } from './domain';
+const BASE_URL = 'http://localhost:8081';
+export const ARTICLEAPI = BASE_URL + '/api';
+export const UPLOAD = 'http://www.shikedian.com:5555/';
+export const IMGURL = BASE_URL;
 
 /**
  * api的版本，鉴于api的版本可能会出现不统一的情况，所以还是在url里面进行拼接
  */
 /* eslint-disable no-unused-vars */
-const API_VERSION = 'v1';
+const API_VERSION = '';
 
 //文章列表
 const API = {

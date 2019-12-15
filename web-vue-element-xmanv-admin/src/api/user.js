@@ -1,10 +1,10 @@
 import request from '@/utils/axios'
-
+import {BASE_URL} from './config'
 
 export function login(params) {
   return request({
-    url: '/user/login',
-    method: 'get',
+    url: 'http://localhost:8081/api/admin_login',
+    method: 'post',
     data:params
   })
 }

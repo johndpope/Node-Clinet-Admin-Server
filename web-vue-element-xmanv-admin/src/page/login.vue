@@ -47,6 +47,7 @@
 	import logoImg from "@/assets/img/logo.png";
 	import { login } from "@/api/user";
     import { setToken } from '@/utils/auth'
+	import { md5 } from '@/utils/utils'
 
 	export default {
 	    data(){
@@ -79,12 +80,18 @@
                 });
             },
 		    submitForm(loginForm) {
+				var timestamp = Date.parse(new Date()) / 1000
+				let user_ticket = md5(md5((md5((this.loginForm.username).toLowerCase() + md5(this.loginForm.password))).toLowerCase()) + timestamp)
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
-						let userinfo = this.loginForm;
+						let userinfo = {
+								'user_ticket': user_ticket,
+								'name': this.loginForm.username,
+								'timestamp': timestamp
+							}
 						login(userinfo).then(res => {
-							let userList = res.data.userList;
-							setToken("Token",userList.token)
+							let userList = res.result_data;
+							setToken("Token",userList)
 							this.$router.push({ path: '/' })
 							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})

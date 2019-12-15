@@ -4,10 +4,7 @@ const sequelizeUtils = require('../utils/sequelizeUtils.js')
 const scopes = require('../utils/scopes.js')
 const utils = require('../utils/utils.js')
 const Admin = require('../models').Admin
-const {
-	token,
-	auth
-} = require('../utils/token.js')
+const {token,auth} = require('../utils/token.js')
 const exception = require('../utils/exception.js')
 const extend = require('../utils/extend.js');
 const logs = require('../config/logConf.js')
@@ -20,16 +17,16 @@ const LogFile = logs.logFile(__dirname);
 const adminAdd = async ctx => {
 	let {
 		role_id = null,
-			email = null,
-			user_ticket = null,
-			name = null,
-			phone = null,
-			qq = null,
-			sex = null,
-			content = null,
-			status = 0,
-			create_time = utils.time(),
-			update_time = utils.time()
+		email = null,
+		user_ticket = null,
+		name = null,
+		phone = null,
+		qq = null,
+		sex = null,
+		content = null,
+		status = 0,
+		create_time = utils.time(),
+		update_time = utils.time()
 	} = ctx.data
 	let is_name = await Admin.findOne({
 		where: {
@@ -98,13 +95,21 @@ const adminLogin = async ctx => {
 					ctx.body = extend.resultData(consts.ERROR_CODE.ACCOUNT_CANCELLATION)
 				}
 				let load_pas = su.password
-				// let user_ticket = utils.md5(load_pas + body.timestamp)
-				let user_ticket =load_pas
+				let user_ticket = utils.md5(load_pas + body.timestamp)
+				// let user_ticket =load_pas
 
 				if (user_ticket == body.user_ticket) {
 					// ctx.append(consts.ACCESSTOKEN,token(su.id))  //可以添加 headers 但前端接收不到 ？？？？
 					su.setDataValue([consts.ACCESSTOKEN], token(su))
 					su.setDataValue('password', null)
+					if(su.role_id==1){
+						su.setDataValue('roles', ['admin']);
+						su.setDataValue('avatar', 'https://wx.qlogo.cn/mmopen/vi_32/un2HbJJc6eiaviaibvMgiasFNlVDlNOb9E6WCpCrsO4wMMhHIbsvTkAbIehLwROVFlu8dLMcg00t3ZtOcgCCdcxlZA/132');
+					}else{
+						su.setDataValue('roles', ['editor']);
+						su.setDataValue('avatar', 'https://mirror-gold-cdn.xitu.io/168e088859e325b9d85?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1');
+					}
+
 					ctx.body = extend.success(su)
 				} else {
 					ctx.body = extend.resultData(consts.ERROR_CODE.USERNAME_OR_PASS_ERRROR)

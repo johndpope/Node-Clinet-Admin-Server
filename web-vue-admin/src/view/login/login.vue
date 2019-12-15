@@ -71,9 +71,8 @@
 
 			gotoLogin() {
 				var timestamp = Date.parse(new Date()) / 1000
-				// let user_ticket = utils.md5(utils.md5((utils.md5((this.formInline.user).toLowerCase() +
-				// 	utils.md5(this.formInline.password))).toLowerCase()) + timestamp)
-					let user_ticket = this.formInline.password
+				let user_ticket = utils.md5(utils.md5((utils.md5((this.formInline.user).toLowerCase() + utils.md5(this.formInline.password))).toLowerCase()) + timestamp)
+				// let user_ticket = this.formInline.password
 				axios({
 					method: 'post',
 					url: api.API.admin_login,

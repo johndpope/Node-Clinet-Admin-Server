@@ -2,8 +2,6 @@ import { asyncRouterMap, constantRouterMap } from '@/router'
 import { topRouterMap } from "@/router/topRouter";
 import * as mutils from '@/utils/mUtils'
 
-
-
 // 循环追加顶栏菜单
 function addTopRouter(){
   asyncRouterMap.forEach( (item) => {
@@ -98,6 +96,7 @@ const permission = {
   actions: {
     // 根据角色，重新设置权限路由;并保存到vuex中,SET_ROUTERS;
     GenerateRoutes({ commit }, data) {
+      debugger
       return new Promise(resolve => {
         let roles = data.roles;
         let accessedRouters = '';

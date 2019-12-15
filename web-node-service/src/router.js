@@ -2,7 +2,7 @@ const controller = require('./controller');
 const logs = require('./config/logConf.js')
 const consts = require('./utils/consts.js')
 const LogFile = logs.logFile('router');
-const top = '/article/v1/'
+const top = '/api/'
 
 /**
  *  ps: 
@@ -15,9 +15,6 @@ const top = '/article/v1/'
 	};
   *
   * */
-  console.log("------------------------")
-  console.log(controller)
-  console.log("------------------------")
 
 function addMapping(router, mapping) {
 	for (var url in mapping) {
