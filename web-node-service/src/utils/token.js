@@ -10,11 +10,7 @@ var utils = require('./utils.js')
 const token = (user) => {
 	var secretKey = config.secretKey
 	var expiresIn = config.expiresIn
-	var token = jwt.sign({
-		user
-	}, secretKey, {
-		expiresIn
-	})
+	var token = jwt.sign({user}, secretKey, {expiresIn})
 	// return utils.base64encode(token)
 	return token
 }

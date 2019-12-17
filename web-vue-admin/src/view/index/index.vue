@@ -94,35 +94,35 @@
 			//		查询所有项目	https://api.github.com/users/shanyanwt/repos
 			//      查询某一仓库       https://api.github.com/repos/shanyanwt/仓库名
 			getsum() {
-				axios({
-					method: 'get',
-					url: api.API.github + 'koa_vue_blog',
-					data: {},
-					transformRequest: [
-						(data, headers) => {
-							//清除不需要的head
-							delete headers.common.Authorization;
-							delete headers.instance_id;
-							delete headers.app_name;
-							delete headers.access_token;
-							return data;
-						}
-					],
-				}).then(res => {
-					if(res.subscribers_count) {
-						this.areaList[0].number = res.subscribers_count + 100
-					}
-					if(res.watchers) {
-						this.areaList[1].number = res.watchers + 100
-					}
-					if(res.forks) {
-						this.areaList[2].number = res.forks + 100
-					}
+				// axios({
+				// 	method: 'get',
+				// 	url: api.API.github + 'koa_vue_blog',
+				// 	data: {},
+				// 	transformRequest: [
+				// 		(data, headers) => {
+				// 			//清除不需要的head
+				// 			delete headers.common.Authorization;
+				// 			delete headers.instance_id;
+				// 			delete headers.app_name;
+				// 			delete headers.access_token;
+				// 			return data;
+				// 		}
+				// 	],
+				// }).then(res => {
+				// 	if(res.subscribers_count) {
+				// 		this.areaList[0].number = res.subscribers_count + 100
+				// 	}
+				// 	if(res.watchers) {
+				// 		this.areaList[1].number = res.watchers + 100
+				// 	}
+				// 	if(res.forks) {
+				// 		this.areaList[2].number = res.forks + 100
+				// 	}
 
-					//					console.log(res)
-				}).catch(err => {
-					console.log("错误信息：" + err);
-				})
+				// 	//					console.log(res)
+				// }).catch(err => {
+				// 	console.log("错误信息：" + err);
+				// })
 			},
 			routeTo(url) {
 				this.$router.push({

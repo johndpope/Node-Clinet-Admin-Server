@@ -47,5 +47,5 @@ module.exports = {
 	Article: require('./skd_article.js')(sequelize, Sequelize),
 	Role: require('./skd_role.js')(sequelize, Sequelize),
 	Star: require('./skd_star.js')(sequelize, Sequelize),
-	MysqlSessionStore: require('./_mysql_session_store.js')(sequelize, Sequelize),
+	// MysqlSessionStore: require('./_mysql_session_store.js')(sequelize, Sequelize),
 }

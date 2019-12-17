@@ -6,6 +6,8 @@ const Article = require('../models').Article
 const exception = require('../utils/exception.js')
 const extend = require('../utils/extend.js');
 const logs = require('../config/logConf.js')
+const Store = require("../config/Store.js");
+const redis = new Store();
 const LogFile = logs.logFile(__dirname);
 
 /**

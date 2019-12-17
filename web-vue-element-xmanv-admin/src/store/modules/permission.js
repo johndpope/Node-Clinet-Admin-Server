@@ -96,7 +96,6 @@ const permission = {
   actions: {
     // 根据角色，重新设置权限路由;并保存到vuex中,SET_ROUTERS;
     GenerateRoutes({ commit }, data) {
-      debugger
       return new Promise(resolve => {
         let roles = data.roles;
         let accessedRouters = '';

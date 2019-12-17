@@ -1,15 +1,27 @@
-import Cookies from 'js-cookie'
+import jsCookie from 'js-cookie'
 
 // const TokenKey = 'Admin-Token'
 
+// cookie 緩存
+const cookie = jsCookie.withConverter({
+  read: function(value, name) {
+      return value;
+  },
+  write: function(value, name) {
+      return value;
+  }
+});
+
 export function getToken(TokenKey) {
-  return Cookies.get(TokenKey)
+  return cookie.get(TokenKey)
 }
 
 export function setToken(TokenKey,token) {
-  return Cookies.set(TokenKey, token)
+  return cookie.set(TokenKey, token, {
+    path: '/'
+  })
 }
 
 export function removeToken(TokenKey) {
-  return Cookies.remove(TokenKey)
+  return cookie.remove(TokenKey)
 }

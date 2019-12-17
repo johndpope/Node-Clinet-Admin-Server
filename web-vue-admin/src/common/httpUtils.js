@@ -56,6 +56,7 @@ import cacheUtils from './cacheUtils'
 import utils from './utils'
 axios.defaults.timeout = 5000
 axios.defaults.hasGlobalSpin = true
+axios.defaults.withCredentials=true
 axios.defaults.headers.post[consts.CONTENT_TYPE] = consts.CONTENT_TYPE_VALUE
 
 // POST传参序列化,增加token
@@ -66,7 +67,8 @@ axios.interceptors.request.use((config) => {
 	config.headers[consts.INSTANCE_ID] = cacheUtils.localStorage(consts.INSTANCE_ID).get(consts.INSTANCE_ID)
 	config.headers[consts.ACCESSTOKEN] = cacheUtils.sessionStorage(consts.ACCESSTOKEN).get(consts.ACCESSTOKEN) || ''
 	config.headers[consts.APP_NAME] = consts.APP_NAME_VALUE;
-
+	
+	  
 	//	console.log('请求参数:' + JSON.stringify(config))
 	// 加载loading动画
 	//		iview.LoadingBar.start();

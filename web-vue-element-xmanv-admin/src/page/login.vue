@@ -91,7 +91,7 @@
 							}
 						login(userinfo).then(res => {
 							let userList = res.result_data;
-							setToken("Token",userList)
+							setToken("Token",JSON.stringify(userList))
 							this.$router.push({ path: '/' })
 							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})

@@ -4,7 +4,6 @@ const sequelizeUtils = require('../utils/sequelizeUtils.js')
 const scopes = require('../utils/scopes.js')
 const utils = require('../utils/utils.js')
 const Admin = require('../models').Admin
-const {token,auth} = require('../utils/token.js')
 const exception = require('../utils/exception.js')
 const extend = require('../utils/extend.js');
 const logs = require('../config/logConf.js')
@@ -97,10 +96,9 @@ const adminLogin = async ctx => {
 				let load_pas = su.password
 				let user_ticket = utils.md5(load_pas + body.timestamp)
 				// let user_ticket =load_pas
-
 				if (user_ticket == body.user_ticket) {
-					// ctx.append(consts.ACCESSTOKEN,token(su.id))  //可以添加 headers 但前端接收不到 ？？？？
-					su.setDataValue([consts.ACCESSTOKEN], token(su))
+					ctx.session.userToken={name:su.name,id:su.id};
+					su.setDataValue([consts.ACCESSTOKEN], su.name)
 					su.setDataValue('password', null)
 					if(su.role_id==1){
 						su.setDataValue('roles', ['admin']);
@@ -109,7 +107,6 @@ const adminLogin = async ctx => {
 						su.setDataValue('roles', ['editor']);
 						su.setDataValue('avatar', 'https://mirror-gold-cdn.xitu.io/168e088859e325b9d85?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1');
 					}
-
 					ctx.body = extend.success(su)
 				} else {
 					ctx.body = extend.resultData(consts.ERROR_CODE.USERNAME_OR_PASS_ERRROR)

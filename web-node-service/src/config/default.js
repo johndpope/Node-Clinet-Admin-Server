@@ -14,6 +14,10 @@ const devConfig = {
 		PORT: '3306',
 		HOST: '127.0.0.1'
 	},
+	redis:{
+		HOST:'127.0.0.1',
+		PORT:6379
+	},
 	//上传文件目录，如图片为 UPLOAD + IMAGE
 	upload: {
 		UPLOAD: '/upload',
@@ -34,6 +38,10 @@ const prodConfig = {
 		PASSWORD: '123456',
 		PORT: '3306',
 		HOST: '127.0.0.1'
+	},
+	redis:{
+		HOST:'127.0.0.1',
+		PORT:6379
 	},
 	upload: {
 		UPLOAD: '/upload',

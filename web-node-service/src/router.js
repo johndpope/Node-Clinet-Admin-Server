@@ -36,7 +36,7 @@ function addMapping(router, mapping) {
 
 module.exports = function(dir) {
 	let routers_dir = dir || 'controller',
-		router = require('koa-router')();
+	router = require('koa-router')();
 	addMapping(router, controller);
 	return router.routes();
 };

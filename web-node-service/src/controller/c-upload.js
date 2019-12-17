@@ -8,9 +8,7 @@ const dateFormat = require('../utils/dateFormat.js')
 const config = require('../config/default.js');
 const logs = require('../config/logConf.js')
 const LogFile = logs.logFile(__dirname);
-const {
-	fileUtils
-} = require('../utils/fileUtils.js');
+const {fileUtils} = require('../utils/fileUtils.js');
 /**
  * 文件上传
  * ps 生成文件名为 SKD_日期
