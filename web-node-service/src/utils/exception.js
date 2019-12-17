@@ -36,8 +36,8 @@ class erroeException extends HttpException {
 	constructor(code, meg) {
 		super();
 		var result = errorMessag(code)
-		this.errorCode = result.error_code || code;
-		this.meg = meg || result.error_message;
+		this.errorCode = result.code || code;
+		this.meg = meg || result.message;
 	}
 }
 
@@ -70,8 +70,8 @@ const catchError = () => {
 			if (ctx.status == 404) {
 				LogFile.info("404：错误地址")
 				ctx.body = {
-					error_code: consts.ERROR_CODE.SERVICE_NOTEXISTS,
-					error_message: '404 服务地址不存在',
+					code: consts.ERROR_CODE.SERVICE_NOTEXISTS,
+					message: '404 服务地址不存在',
 					request: ctx.url
 				}
 			}

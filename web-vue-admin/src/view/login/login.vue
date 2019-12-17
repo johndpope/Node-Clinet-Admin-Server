@@ -82,15 +82,15 @@
 						'timestamp': timestamp
 					}
 				}).then(res => {
-					if(res.error_code == consts.ERROR_CODE.SUCCESS) {
+					if(res.code == consts.ERROR_CODE.SUCCESS) {
 						this.$Notice.success({
 							title: '登录成功！',
 						});
-						cacheUtils.sessionStorage(consts.ACCESSTOKEN).set(consts.ACCESSTOKEN, res.result_data[consts.ACCESSTOKEN]);
-						let userInfo = JSON.stringify(res.result_data)
+						cacheUtils.sessionStorage(consts.ACCESSTOKEN).set(consts.ACCESSTOKEN, res.Data[consts.ACCESSTOKEN]);
+						let userInfo = JSON.stringify(res.Data)
 						cacheUtils.localStorage(consts.USERINFO).set(consts.USERINFO, userInfo)
 						this.$router.push('/home');
-					} else if(res.error_code == consts.ERROR_CODE.USERNAME_OR_PASS_ERRROR) {
+					} else if(res.code == consts.ERROR_CODE.USERNAME_OR_PASS_ERRROR) {
 						this.$Notice.error({
 							title: '用户名密码错误！'
 						});

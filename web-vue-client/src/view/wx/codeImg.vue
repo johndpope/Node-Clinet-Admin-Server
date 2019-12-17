@@ -63,7 +63,7 @@
 						"photo": data,
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 
 					} else {}
 				}).catch(err => {

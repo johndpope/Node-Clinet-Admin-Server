@@ -60,13 +60,13 @@
 					method: 'get',
 					url: api.ARTICLE_API.article_select + '/' + self.$route.params.id
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						self.article = res.result_data;
-						document.title = res.result_data.title || '404从你的全世界路过！';
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						self.article = res.Data;
+						document.title = res.Data.title || '404从你的全世界路过！';
 						if(self.article.classify) {
-							self.article.classify = res.result_data.classify.split(',')
+							self.article.classify = res.Data.classify.split(',')
 						}
-						self.article.create_time = dateFormat.dateFormat(res.result_data.create_time * 1000, 'yyyy-MM-dd hh:mm:ss')
+						self.article.create_time = dateFormat.dateFormat(res.Data.create_time * 1000, 'yyyy-MM-dd hh:mm:ss')
 						setTimeout(function() {
 							self.articleUpdate(self.article);
 						}, 4600)
@@ -87,7 +87,7 @@
 						number: type.number + 1
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 
 					} else {
 						console.log("...")

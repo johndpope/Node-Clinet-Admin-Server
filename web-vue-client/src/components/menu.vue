@@ -94,8 +94,8 @@
 						]
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						this.articleList = res.result_data
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						this.articleList = res.Data
 
 					} else {
 						console.log("服务器异常")

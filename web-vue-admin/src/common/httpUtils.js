@@ -91,11 +91,11 @@ axios.interceptors.response.use((res) => {
 	}
 	//	console.log('请求结果:' + JSON.stringify(res.data))
 	//	iview.LoadingBar.finish();
-	if(!res.data.result_data) {
-		res.data.result_data = [];
+	if(!res.data.Data) {
+		res.data.Data = [];
 	}
-	if(res.data.result_data && Object.keys(res.data.result_data).indexOf('items') != -1 && res.data.result_data.items != null) {
-		res.data.result_data = res.data.result_data['items']
+	if(res.data.Data && Object.keys(res.data.Data).indexOf('items') != -1 && res.data.Data.items != null) {
+		res.data.Data = res.data.Data['items']
 	}
 	/*setTimeout(function(){
 		document.querySelector('#global-spin').style.display = 'none'

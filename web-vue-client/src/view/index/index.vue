@@ -67,8 +67,8 @@
 						status: 0
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						this.articleList = res.result_data;
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						this.articleList = res.Data;
 						this.articleList.map(item => {
 							if(item.classify) {
 								item.classify = utils.markSplit(item.classify);

@@ -36,15 +36,15 @@ const uploadImg = async ctx => {
 	}).then(su => {
 		let uplaod_img = su.substring(config.upload.UPLOAD.length, su.length)
 		ctx.body = {
-			error_code: consts.ERROR_CODE.SUCCESS,
-			error_message: '上传文件成功',
+			code: consts.ERROR_CODE.SUCCESS,
+			message: '上传文件成功',
 			realName: uplaod_img,
 		}
 	}).catch(err => {
 		LogFile.error(err)
 		ctx.body = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '上传文件失败！',
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '上传文件失败！',
 		}
 	})
 }

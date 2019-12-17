@@ -12,16 +12,16 @@ const LogFile = logs.logFile("extend_mssage");
  * ```
  *
  * ```js
- * return {errorCode: 10000,result_data:{msg:"hello from lin!"}})
+ * return {errorCode: 10000,Data:{msg:"hello from lin!"}})
  * ```
  *
  * @param app app实例
  */
 const success = (data) => {
 	let res = {
-		error_code: consts.ERROR_CODE.SUCCESS,
-		error_message: '服务调用成功',
-		result_data: data
+		code: consts.ERROR_CODE.SUCCESS,
+		message: '服务调用成功',
+		Data: data
 	}
 	LogFile.info(JSON.stringify(res))
 	return res
@@ -30,10 +30,10 @@ const success = (data) => {
 const resultData = (code, data, mes) => {
 	var result = errorMessag(code)
 	let res = {
-		error_code: result.error_code || code,
-		error_message: mes || result.error_message
+		code: result.code || code,
+		message: mes || result.message
 	}
-	if (data) res.result_data = data
+	if (data) res.Data = data
 	LogFile.info(JSON.stringify(res))
 	return res
 }

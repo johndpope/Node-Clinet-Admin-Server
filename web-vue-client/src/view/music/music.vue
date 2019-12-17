@@ -29,8 +29,8 @@
 					url: api.ARTICLE_API.music_163 + '/' + id,
 					data: {}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						this.musicList = res.result_data
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						this.musicList = res.Data
 						this.getMusicUrl()
 					} else {}
 				}).catch(err => {

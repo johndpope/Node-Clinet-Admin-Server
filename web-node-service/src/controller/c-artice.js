@@ -166,9 +166,9 @@ const articleUpdate = async ctx => {
 		.then(su => {
 			// increment findOne返回后可以直接调用
 			
-			var error_code = su[0] ? consts.ERROR_CODE.SUCCESS : consts.ERROR_CODE.INTERNAL_SERVER_ERROR;
-			var error_message = su[0] ? '更新完成' : '更新失败'
-			ctx.body = extend.resultData(error_code, error_message)
+			var code = su[0] ? consts.ERROR_CODE.SUCCESS : consts.ERROR_CODE.INTERNAL_SERVER_ERROR;
+			var message = su[0] ? '更新完成' : '更新失败'
+			ctx.body = extend.resultData(code, message)
 		})
 		.catch(ex => {
 			throw new exception.erroeException(consts.ERROR_CODE.INTERNAL_SERVER_ERROR, sequelizeUtils.validation(ex))

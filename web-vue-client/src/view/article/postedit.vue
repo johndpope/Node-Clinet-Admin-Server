@@ -206,8 +206,8 @@
 						
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						var url = "article/" + res.result_data.id;
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						var url = "article/" + res.Data.id;
 						this.$router.push(url);
 						this.$Notice.success({
 							title: '添加文章成功',

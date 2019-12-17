@@ -60,7 +60,7 @@
                      data['seriesaverage'] = seriesaverage;
                 }());
                 this.chart.setOption({
-                    backgroundColor: '#CCFFCC',
+                    backgroundColor: '#ffd200',
                 title: {
                     text: '收支统计',
                     subtext: '单位/万元',

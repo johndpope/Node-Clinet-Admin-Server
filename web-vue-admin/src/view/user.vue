@@ -311,8 +311,8 @@
 						url: api.API.admin_check + '/' + this.formInline.name,
 						data: {}
 					}).then(res => {
-						if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-							resolve(res.result_data.is_user)
+						if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+							resolve(res.Data.is_user)
 						} else {
 							reject()
 						}
@@ -338,18 +338,18 @@
 								id: this.adminDetails.id
 							}
 						}).then(res => {
-							if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+							if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 								this.notice(1, this.isUpdate ? '更新成功！' : '添加用户成功')
 								this.isUpdate = false
 								that.getUserList()
 								that.show()
-							} else if(res.error_code == CONSTS.ERROR_CODE.CHECK_ALREADY_EXISTS) {
+							} else if(res.code == CONSTS.ERROR_CODE.CHECK_ALREADY_EXISTS) {
 								that.$Notice.error({
 									title: '该创建的用户名已存在！',
-									desc: '错误代码：' + res.error_code
+									desc: '错误代码：' + res.code
 								});
 							} else {
-								this.notice(0, res.error_message)
+								this.notice(0, res.message)
 							}
 						}).catch(err => {
 							console.log("错误：" + err);
@@ -390,15 +390,15 @@
 						url: api.API.admin_delete + '/' + this.adminDetails.id,
 						data: {}
 					}).then(res => {
-						if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-							if(res.result_data.is_user) {
+						if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+							if(res.Data.is_user) {
 								this.dataList.splice(index, 1);
 								this.notice(1, '删除成功！')
 							} else {
 								this.notice(0, '删除失败！')
 							}
 						} else {
-							this.notice(0, res.error_code)
+							this.notice(0, res.code)
 						}
 					}).catch(err => {
 						console.log("错误：" + err);
@@ -419,15 +419,15 @@
 					url: api.API.admin_list,
 					data: this.form
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						res.result_data.map(item => {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						res.Data.map(item => {
 							item.create_time = dateFormat.dateFormat(item.create_time * 1000, 'yyyy-MM-dd hh:mm:ss') || '--'
 							item.update_time = dateFormat.diffTime(item.update_time * 1000) || '--'
 						})
 						this.mypage.total_row_number = res.total_row;
-						this.dataList = res.result_data;
+						this.dataList = res.Data;
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("错误：" + err);
@@ -449,7 +449,7 @@
 						status: setStatus
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 						if(type == 0) {
 							this.dataList[index].status = 1
 						} else {
@@ -457,7 +457,7 @@
 						}
 						this.notice(1, '修改成功！')
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("错误：" + err);
@@ -469,12 +469,12 @@
 					url: api.API.admin_select + '/' + id,
 					data: {}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						res.result_data.create_time = dateFormat.dateFormat(res.result_data.create_time * 1000)
-						this.details = res.result_data;
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						res.Data.create_time = dateFormat.dateFormat(res.Data.create_time * 1000)
+						this.details = res.Data;
 
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("错误：" + err);

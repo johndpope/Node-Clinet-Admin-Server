@@ -10,7 +10,7 @@ const redis = new Store();
  */
 
 // 不需要做token验证的请求路由配置在这里
-const withoutTokenCheck=['/api/admin_login',"/api/upload"]
+const withoutTokenCheck=['/api/admin_login',"/api/upload","/api/article_list"]
 const auth = () => {
 	return async function(ctx, next) {
 		if(!withoutTokenCheck.includes(ctx.url)){

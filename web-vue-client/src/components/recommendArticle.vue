@@ -67,8 +67,8 @@
 						row_count: page.row_count,
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						this.articleList.push(...res.result_data);
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						this.articleList.push(...res.Data);
 						this.page.page_size++;
 						this.page.row_start = this.page.page_size * page.row_count
 						if(this.articleList.length >= res.total_row) {

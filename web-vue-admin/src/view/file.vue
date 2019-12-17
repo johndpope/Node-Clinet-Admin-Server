@@ -115,11 +115,11 @@
 						type: row.type,
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 						this.notice(1, '删除成功！')
 						this.getUserList()
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("错误：" + err);
@@ -158,10 +158,10 @@
 						path: getPath || '/upload'
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						this.dataList = res.result_data;
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						this.dataList = res.Data;
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("错误：" + err);

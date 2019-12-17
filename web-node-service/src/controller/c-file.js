@@ -81,8 +81,8 @@ const fileCatalogue = async ctx => {
 			suList.push(obj)
 		})
 		let res = {
-			error_code: consts.ERROR_CODE.SUCCESS,
-			result_data: {
+			code: consts.ERROR_CODE.SUCCESS,
+			Data: {
 				items: suList,
 				path: paths
 			}
@@ -93,8 +93,8 @@ const fileCatalogue = async ctx => {
 	}).catch(err => {
 		LogFile.error(err)
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '服务器异常'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '服务器异常'
 		}
 		ctx.body = res
 	})
@@ -108,8 +108,8 @@ const delFile = async ctx => {
 	if (!body.path) {
 		LogFile.error(err)
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '请输入文件名称'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '请输入文件名称'
 		}
 		ctx.body = res
 		return false;
@@ -119,8 +119,8 @@ const delFile = async ctx => {
 		name: body.path
 	}).then(su => {
 		let res = {
-			error_code: consts.ERROR_CODE.SUCCESS,
-			result_data: {
+			code: consts.ERROR_CODE.SUCCESS,
+			Data: {
 				ischeck: 1
 			}
 		}
@@ -130,8 +130,8 @@ const delFile = async ctx => {
 	}).catch(err => {
 		LogFile.error(err)
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '服务器异常'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '服务器异常'
 		}
 		ctx.body = res
 		return false;
@@ -163,8 +163,8 @@ const downloadFile = async ctx => {
 	if (!body.path) {
 		LogFile.error(err)
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '请输入文件名称'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '请输入文件名称'
 		}
 		ctx.body = res
 		return false;
@@ -195,8 +195,8 @@ const downloadFile = async ctx => {
 			}).catch(err => {
 				LogFile.error(err)
 				let res = {
-					error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-					error_message: '服务器异常'
+					code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+					message: '服务器异常'
 				}
 				ctx.body = res
 				return false;

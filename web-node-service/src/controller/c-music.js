@@ -36,8 +36,8 @@ const music163 = async ctx => {
 	if (!id) {
 		LogFile.error('请填写ID')
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '请填写ID'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '请填写ID'
 		}
 		ctx.body = res
 	}
@@ -56,8 +56,8 @@ const music163 = async ctx => {
 			musicList.push(obj)
 		})
 		let resData = {
-			error_code: consts.ERROR_CODE.SUCCESS,
-			result_data: {
+			code: consts.ERROR_CODE.SUCCESS,
+			Data: {
 				items: musicList
 			}
 		}
@@ -66,8 +66,8 @@ const music163 = async ctx => {
 	}).catch(err => {
 		LogFile.error(err)
 		let res = {
-			error_code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
-			error_message: '服务器异常'
+			code: consts.ERROR_CODE.INTERNAL_SERVER_ERROR,
+			message: '服务器异常'
 		}
 		ctx.body = res
 	})

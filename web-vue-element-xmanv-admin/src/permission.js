@@ -50,14 +50,14 @@ router.beforeEach((to, from, next) => {
 
         // 自己改的
         // getUserInfo({"token":token}).then().then(res => { // 根据token拉取用户信息
-          let userList = JSON.parse(getToken('Token'));
-          store.commit("SET_ROLES",userList.name);
-          store.commit("SET_NAME",userList.name);
-          store.commit("SET_AVATAR",userList.avatar);
-          store.dispatch('GenerateRoutes', { "roles":userList.name }).then(() => { // 根据roles权限生成可访问的路由表
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
-          })
+        let userList = JSON.parse(getToken('Token'));
+        store.commit("SET_ROLES",userList.name);
+        store.commit("SET_NAME",userList.name);
+        store.commit("SET_AVATAR",userList.avatar);
+        store.dispatch('GenerateRoutes', { "roles":userList.name }).then(() => { // 根据roles权限生成可访问的路由表
+          router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
+          next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+        })
         // }).catch((err) => {
         //   store.dispatch('LogOut').then(() => {
         //     Message.error(err || 'Verification failed, please login again')

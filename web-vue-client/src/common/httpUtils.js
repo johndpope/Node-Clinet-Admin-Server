@@ -15,7 +15,7 @@ import utils from './utils'
 
 axios.defaults.timeout = 5000
 axios.defaults.hasGlobalSpin = true
-
+axios.defaults.withCredentials=true
 // POST传参序列化,增加token
 axios.interceptors.request.use((config) => {
 	return config
@@ -24,11 +24,11 @@ axios.interceptors.request.use((config) => {
 	return Promise.reject(error)
 })
 axios.interceptors.response.use((res) => {
-	if(!res.data.result_data) {
-		res.data.result_data = [];
+	if(!res.data.Data) {
+		res.data.Data = [];
 	}
-	if(res.data.result_data && Object.keys(res.data.result_data).indexOf('items') != -1 && res.data.result_data.items != null) {
-		res.data.result_data = res.data.result_data['items']
+	if(res.data.Data && Object.keys(res.data.Data).indexOf('items') != -1 && res.data.Data.items != null) {
+		res.data.Data = res.data.Data['items']
 	}
 	return res.data
 }, (error) => {

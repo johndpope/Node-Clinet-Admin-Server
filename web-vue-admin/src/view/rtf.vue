@@ -215,8 +215,8 @@
 					method: 'get',
 					url: api.API.article_select + '/' + this.$route.query.id,
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
-						let resData = res.result_data
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
+						let resData = res.Data
 						//插入html
 						this.editor.focus();
 						this.editor.clipboard.dangerouslyPasteHTML(this.editor.getSelection().index, resData.content);
@@ -226,7 +226,7 @@
 						this.form.imgUrl = resData.cover;
 						this.summary = resData.summary;
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("失误：" + err);
@@ -247,11 +247,11 @@
 						classify: this.form.classify.join(','),
 					}
 				}).then(res => {
-					if(res.error_code == CONSTS.ERROR_CODE.SUCCESS) {
+					if(res.code == CONSTS.ERROR_CODE.SUCCESS) {
 						this.notice(1, queryID ? '修改文章成功！' : '添加文章成功！')
 						this.$router.push("/articleList");
 					} else {
-						this.notice(0, res.error_code)
+						this.notice(0, res.code)
 					}
 				}).catch(err => {
 					console.log("失误：" + err);

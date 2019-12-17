@@ -251,8 +251,8 @@ const adminDelete = async ctx => {
 		})
 		.then(su => {
 			let res = {
-				error_code: consts.ERROR_CODE.SUCCESS,
-				result_data: {
+				code: consts.ERROR_CODE.SUCCESS,
+				Data: {
 					is_user: su
 				}
 			}
