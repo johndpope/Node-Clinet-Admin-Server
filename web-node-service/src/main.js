@@ -28,6 +28,10 @@ app.use(session({
 //axios  需要配置这个其他有不同 axios.defaults.withCredentials=true
 app.use(
 	cors({
+		origin: (ctx) => {
+			const origin = ctx.headers.origin  // 实际生产请根据具体情况来进行规则配置
+			return origin
+		},
         maxAge: 5, //指定本次预检请求的有效期，单位为秒。
         credentials: true, //是否允许发送Cookie
         // allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], //设置所允许的HTTP请求方法

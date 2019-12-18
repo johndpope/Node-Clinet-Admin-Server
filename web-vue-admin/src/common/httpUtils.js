@@ -1,55 +1,5 @@
 'use strict'
 
-/*
- *
- * http请求工具类
- * eg：
- * 		import axios from 'common/httpUtils';
-        axios({
-		  method:'get',
-		  url: 'xxxx/xxxxx',
-		  params: {
-		    id:id,
-		    token:token
-		  }
-		})
-		.then(response => {
-		  sucess(response);
-		}).catch(error => {
-			error(error);
-		});
- * 		axios({
-		  method:'post',
-		  url: 'xxxx/xxxxx',
-		  data: {
-		  	id:id,
-		    token:token
-		  }
-		}).then(response => {
-		    sucess(response);
-		}).catch(error => {
-			error(error);
-		});
-
- *  并发执行
-
-		function getUserAccount() {
-		  return axios.get('/user/12345');
-		}
-
-		function getUserPermissions() {
-		  return axios.get('/user/12345/permissions');
-		}
-
-		axios.all([getUserAccount(), getUserPermissions()])
-		  .then(axios.spread(function (acct, perms) {
-		    // Both requests are now complete
-		  }));
- *
- */
-
-// import iview from 'iview';
-/*require('es6-promise').polyfill()*/
 import axios from 'axios'
 import consts from './consts'
 import cacheUtils from './cacheUtils'

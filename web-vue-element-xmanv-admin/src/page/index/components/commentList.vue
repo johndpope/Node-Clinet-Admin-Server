@@ -26,7 +26,7 @@
       }
     },
     mounted(){
-        this.getSalesList();
+        // this.getSalesList();
     },
     methods:{
         // 获取列表数据

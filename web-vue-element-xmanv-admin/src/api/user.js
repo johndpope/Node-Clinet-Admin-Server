@@ -19,8 +19,8 @@ export function logout(params) {
 
 export function getUserInfo(params) {
   return request({
-    url: '/user/info/get',
-    method: 'get',
+    url: 'http://localhost:8081/api/admin_getuerinfo',
+    method: 'post',
     data:params
   })
 }

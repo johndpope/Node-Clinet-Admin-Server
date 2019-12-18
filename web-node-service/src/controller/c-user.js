@@ -8,7 +8,8 @@ const exception = require('../utils/exception.js')
 const extend = require('../utils/extend.js');
 const logs = require('../config/logConf.js')
 const LogFile = logs.logFile(__dirname);
-
+const Store = require('../config/Store.js');
+const redis = new Store();
 
 /**
  *添加用户
@@ -118,6 +119,56 @@ const adminLogin = async ctx => {
 		.catch(ex => {
 			throw new exception.erroeException(consts.ERROR_CODE.INTERNAL_SERVER_ERROR, sequelizeUtils.validation(ex))
 		})
+}
+
+// 根据session获取用户信息
+const adminGetUserInfo = async ctx => {
+	let body = ctx.data
+	const SESSIONID = ctx.cookies.get('SESSIONID');
+	if (!SESSIONID) {
+		throw new exception.erroeException(consts.ERROR_CODE.ACCOUNT_CODE_EXPIRED)
+	}
+	const redisData = await redis.get(SESSIONID);
+	// redisData = { userToken: { name: 'editor', id: 3 } }
+	if (!redisData) {
+		throw new exception.erroeException(consts.ERROR_CODE.ACCOUNT_CODE_EXPIRED)
+	}
+	if (redisData && redisData.userToken) {
+		console.log("---------------------------------------------")
+		console.log(`token验证--userToken为${redisData.userToken.name}`);
+		console.log("---------------------------------------------")
+			await Admin.findOne({
+			where: {
+				name: redisData.userToken.name
+			}
+		})
+		.then(su => {
+			let res = {}
+			if (su) {
+				if (su.status == 1) {
+					ctx.body = extend.resultData(consts.ERROR_CODE.ACCOUNT_CANCELLATION)
+				}else{
+						ctx.session.userToken={name:su.name,id:su.id};
+						su.setDataValue([consts.ACCESSTOKEN], su.name)
+						su.setDataValue('password', null)
+						if(su.role_id==1){
+							su.setDataValue('roles', ['admin']);
+							su.setDataValue('avatar', 'https://wx.qlogo.cn/mmopen/vi_32/un2HbJJc6eiaviaibvMgiasFNlVDlNOb9E6WCpCrsO4wMMhHIbsvTkAbIehLwROVFlu8dLMcg00t3ZtOcgCCdcxlZA/132');
+						}else{
+							su.setDataValue('roles', ['editor']);
+							su.setDataValue('avatar', 'https://mirror-gold-cdn.xitu.io/168e088859e325b9d85?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1');
+						}
+						ctx.body = extend.success(su)
+				}
+			} else {
+				ctx.body = extend.resultData(consts.ERROR_CODE.USERNAME_OR_PASS_ERRROR)
+			}
+		})
+		.catch(ex => {
+			throw new exception.erroeException(consts.ERROR_CODE.INTERNAL_SERVER_ERROR, sequelizeUtils.validation(ex))
+		})
+	}
+
 }
 /**
  *查询用户
@@ -270,6 +321,7 @@ module.exports = {
 	['GET admin_select/:id']: adminSelect,
 	['GET admin_check/:name']: adminCheckName,
 	['POST admin_login']: adminLogin,
+	['POST admin_getuerinfo']: adminGetUserInfo,	
 	['POST admin_list']: adminSelectList,
 	['POST admin_update']: adminUpdate,
 	['GET admin_del/:id']: adminDelete,
