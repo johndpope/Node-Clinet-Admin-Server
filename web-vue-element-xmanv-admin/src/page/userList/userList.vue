@@ -107,7 +107,7 @@
         created(){
         },
         mounted(){
-            this.getUserList();
+            // this.getUserList();
         },
         methods: {
             getUserList(){

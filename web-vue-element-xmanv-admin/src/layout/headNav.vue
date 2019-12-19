@@ -147,7 +147,7 @@
                   this.qq.isQq = false;
               },
               logout(){
-                  this.$store.dispatch('LogOut').then(() => {
+                  this.$store.dispatch('LogOut').then((res) => {
                       location.reload();
                   })
               },

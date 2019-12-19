@@ -40,7 +40,7 @@ const user  = {
           logout(reqData).then(response => {
             commit('SET_ROLES', [])
             removeToken('Token')
-            resolve()
+            resolve(response)
           })
         })
       },

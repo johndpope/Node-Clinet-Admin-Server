@@ -90,7 +90,6 @@
 								'timestamp': timestamp
 							}
 						login(userinfo).then(res => {
-							debugger
 							let userList = res.Data;
 							setToken("Token",JSON.stringify(userList))
 							this.$router.push({ path: '/' })

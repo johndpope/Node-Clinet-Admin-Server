@@ -41,7 +41,11 @@ router.beforeEach((to, from, next) => {
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
           })
         }).catch((err) => {
-          store.dispatch('LogOut').then(() => {
+          store.dispatch('LogOut').then((response) => {
+            console.log("------------------------")
+            console.log(response)
+            console.log("------------------------")
+
             Message.error(err || 'Verification failed, please login again')
             next({ path: '/' })
           })

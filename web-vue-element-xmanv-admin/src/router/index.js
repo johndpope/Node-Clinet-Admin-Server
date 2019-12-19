@@ -3,6 +3,13 @@ import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
 import { topRouterMap } from "./topRouter";
 
+
+// 此处是为了处理路由抛出的警告 vue-router.esm.js?8c4f:2007 Uncaught (in promise) undefined
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
+
 process.env.NODE_ENV === "development" ? Vue.use(Router) : null;
 
 function filterTopRouterMap(name){
@@ -31,7 +38,7 @@ export const constantRouterMap = [
 	{
     path: '',  
     component: Layout,
-		redirect: '/index',
+		redirect: '/index/index',
 		hidden:true
   	},
 	{ path: '/login',name: 'login',component:() => import('@/page/login'),hidden: true},
@@ -48,7 +55,7 @@ export const constantRouterMap = [
 		noDropdown:true,
 		children:[ 
 			{
-				path:'', 
+				path:'index', 
 				meta:{
 					title:'首页', 
 					icon:'icondashboard',
@@ -91,7 +98,7 @@ export const asyncRouterMap = [
 		]
 	},
 	{
-		path:'/share',
+		path:'/share/share',
 		name: 'share',
 		component:Layout,
 		meta: {
@@ -101,7 +108,7 @@ export const asyncRouterMap = [
 		noDropdown:true,
 		children:[
 			{
-				path:'', 
+				path:'share', 
 				meta:{
 				  title:'分享功能', 
 				  icon:'iconshare',
@@ -135,7 +142,7 @@ export const asyncRouterMap = [
 						{"path":"infoShow5","title":"个人信息子菜单5"}
 					]	
 			 },
-	  	 component:Content,
+	  	 	 component:Content,
 			 children:filterTopRouterMap('infoShow')
 		},
 		{
@@ -225,28 +232,28 @@ export const asyncRouterMap = [
     path: '/permission',
 		name: 'permission',
 		meta: {
-      title: '权限设置',
-      icon: 'iconpermission',
-      roles: ['admin', 'editor'] // you can set roles in root nav
+		title: '权限设置',
+		icon: 'iconpermission',
+		roles: ['admin', 'editor'] // you can set roles in root nav
     },
     component: Layout,
     redirect: '/permission/page',
     children: [{
 			path: 'page',
 			name: 'pagePer',
-      meta: {
-        title: '页面权限',
-        roles: ['admin'] // or you can only set roles in sub nav
-      },
-      component: () => import('@/page/permission/page'),
+			meta: {
+				title: '页面权限',
+				roles: ['admin'] // or you can only set roles in sub nav
+			},
+      		component: () => import('@/page/permission/page'),
     }, {
 			path: 'directive',
 			name: 'directivePer',
-      meta: {
+			meta: {
 				title: '按钮权限',
 				roles:['editor']
-      },
-      component: () => import('@/page/permission/directive'),
+			},
+			component: () => import('@/page/permission/directive'),
     }]
   },
   {
@@ -265,7 +272,7 @@ export const asyncRouterMap = [
 				meta: { 
 					title: '401', 
 					noCache: true 
-			  }
+			  	}
 			},
 			{
 				path: '404', 
@@ -278,8 +285,8 @@ export const asyncRouterMap = [
 			}
     ]
   },
-	{ path: '*', redirect: '/404', hidden: true }
-	];
+  { path: '*', redirect: '/404', hidden: true }
+];
 	
 	/**
 	 *  路由设置要求：
