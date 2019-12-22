@@ -6,6 +6,8 @@ const path = require('path');
 const resolve = dir => {
   return path.join(__dirname, dir);
 };
+const webpack = require('webpack')
+
 
 const env = process.env.NODE_ENV
 let target = process.env.VUE_APP_URL  // development和production环境是不同的
@@ -77,7 +79,13 @@ module.exports = {
     // 分割代码
     config.optimization.splitChunks({
         chunks: 'all'
-    })    
+    })  
+    config.plugin('provide').use(webpack.ProvidePlugin, [{
+      $: 'jquery',
+      jquery: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }])  
     // 对图片进行压缩处理
     config.module
     .rule('images')

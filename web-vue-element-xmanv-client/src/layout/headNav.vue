@@ -71,8 +71,8 @@
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
-                            <el-menu-item index="2-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
-                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
+                            <!-- <el-menu-item index="2-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
+                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item> -->
                             <el-menu-item index="2-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
                         </el-submenu>
                     </el-menu>
@@ -148,7 +148,8 @@
               },
               logout(){
                   this.$store.dispatch('LogOut').then((res) => {
-                      location.reload();
+                    //   location.reload();
+                    this.$router.push('/login')
                   })
               },
              /**
@@ -193,11 +194,12 @@
         box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
     }
     .head-nav {
-        // position: fixed;
-        // top: 0;
-        // left: 196px;
-        // z-index: 29;
-        margin:10px 20px;
+        position: fixed;
+        top: 0;
+        left: 230px;
+        z-index: 29;
+        width:calc(100% - 490px);
+        margin:0px 20px;
         transition: width .2s;
         justify-content: space-between;
         height: 60px;

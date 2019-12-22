@@ -6,7 +6,8 @@ import store from './store/'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI, { size: 'mini'});
 import('element-ui/lib/theme-chalk/index.css')
-
+// 引入自己阿里图标库
+import './assets/fonts/iconfont.css';
 import './components/iconSvg' // iconSvg
 
 import '@/permission' // permission control
@@ -19,12 +20,8 @@ import i18n from "@/lang";
 // 分享功能集合
 import { shareConfig } from './utils/share';
 Vue.prototype.shareConfig = shareConfig;
-
-
+import $ from 'jquery'
 Vue.config.productionTip = false;
-
-
-
 
 new Vue({
   router,

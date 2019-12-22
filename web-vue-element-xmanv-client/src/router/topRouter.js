@@ -1,7 +1,7 @@
 
 export const topRouterMap = [
     {
-        'parentName':'infoShow',
+        'parentName':'userList',
         'data':[
             {
                 path: 'infoShow1',
@@ -11,7 +11,7 @@ export const topRouterMap = [
                     icon: 'fa-asterisk',
                     routerType: 'topmenu'
                 },
-                component: () => import('@/page/infoManage/infoShow')
+                component: () => import('@/page/index/index')
             },
             {
                 path: 'infoShow2',
@@ -21,7 +21,7 @@ export const topRouterMap = [
                     icon: 'fa-asterisk',
                     routerType: 'topmenu'
                 },
-                component: () => import('@/page/fundList/moneyData')
+                component: () => import('@/page/index/index')
             },
             {
                 path: 'infoShow3',
@@ -31,7 +31,7 @@ export const topRouterMap = [
                     icon: 'fa-asterisk',
                     routerType: 'topmenu'
                 },
-                component: () => import('@/page/fundList/moneyData')
+                component: () => import('@/page/index/index')
             },
             {
                 path: 'infoShow4',
@@ -41,7 +41,7 @@ export const topRouterMap = [
                     icon: 'fa-asterisk',
                     routerType: 'topmenu'
                 },
-                component: () => import('@/page/fundList/moneyData')
+                component: () => import('@/page/index/index')
             },
             {
                 path: 'infoShow5',
@@ -51,42 +51,7 @@ export const topRouterMap = [
                     icon: 'fa-asterisk',
                     routerType: 'topmenu'
                 },
-                component: () => import('@/page/fundList/moneyData')
-            }
-        ]
-    },
-    {
-        'parentName':'infoModify',
-        'data':[
-            {
-                path:'infoModify1',
-                name:'infoModify1',
-                meta:{
-                    title:'修改信息子菜单1',
-                    icon:'fa-asterisk',
-                    routerType:'topmenu'
-                },
-                component: () => import('@/page/infoManage/infoModify')
-            },
-            {
-                path:'infoModify2',
-                name:'infoModify2',
-                meta:{
-                    title:'修改信息子菜单2',
-                    icon:'fa-asterisk',
-                    routerType:'topmenu'
-                },
-                component: () => import('@/page/fundList/moneyData')
-            },
-            {
-                path:'infoModify3',
-                name:'infoModify3',
-                meta:{
-                    title:'修改信息子菜单3',
-                    icon:'fa-asterisk',
-                    routerType:'topmenu'
-                },
-                component: () => import('@/page/fundList/moneyData')
+                component: () => import('@/page/index/index')
             }
         ]
     }

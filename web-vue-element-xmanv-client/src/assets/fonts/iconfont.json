@@ -1,0 +1,65 @@
+{
+  "id": "1331972",
+  "name": "xmanv",
+  "font_family": "xiconfont",
+  "css_prefix_text": "xicon",
+  "description": "Bahu",
+  "glyphs": [
+    {
+      "icon_id": "339514",
+      "name": "QQ",
+      "font_class": "icon",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "1316122",
+      "name": "底部导航栏_房子_跳转主页",
+      "font_class": "dibudaohanglan_fangzi_tiaozhuanzhuye",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "1317239",
+      "name": "底部导航栏_星球_跳转发现页",
+      "font_class": "dibudaohanglan_xingqiu_tiaozhuanfaxianye",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "1317246",
+      "name": "底部导航栏_小人_跳转个人中心",
+      "font_class": "dibudaohanglan_xiaoren_tiaozhuangerenzhongxin",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "1546598",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "3763254",
+      "name": "搜索",
+      "font_class": "weibiaoti-",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "6742309",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "9307591",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    }
+  ]
+}

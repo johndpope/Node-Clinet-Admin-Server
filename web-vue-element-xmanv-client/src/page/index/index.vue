@@ -1,160 +1,115 @@
 <template>
 		<section class="data_section" ref="data_section"> 
-			<a :href="github" target="_blank">
-				<el-row :gutter="10" class="row_list">
-					<el-col :span="8">
-						<div class="row_left row_base">
-							<el-col :span="12">
-								<div class="pay saleBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.yearLoss') }}</p>
-										<p class="number">68<span class="perTitle">({{ $t('index.tenMillion') }})</span></p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconfukuan" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="12">
-								<div class="pay taxBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.yearProfit') }}</p>
-										<p class="number">120<span class="perTitle">(%)</span></p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay3" />
-									</div>
-								</div>
-							</el-col>
+			<main id="main-wrap">
+				<section id="main-box">
+				<article class="article-item" v-for='(item,index) in Article_list' :key='index'>
+						<div class="art-pretty">
+							<b class="art-dotts"></b>
+							<time class="art-time">
+								{{item.create_time}}
+							</time>
 						</div>
-					</el-col>
-					<el-col :span="16">
-						<div class="row_right row_base">
-							<el-col :span="6">
-								<div class="extenedBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.potentialInvestor') }}</p>
-										<p class="number">686<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 10%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay2" />
-									</div>
+						<div class="art-main com-block">
+							<router-link :to='jumpDetailUrl(item.id)' class="art-wrap">
+								<div class="art-info">
+									<h2 class="art-title">{{item.title}}</h2>
+									<h3 class="art-note" >
+										<span>{{item.summary}}</span>
+									</h3>
 								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="likeBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.intentionInvestor') }}</p>
-										<p class="number">1276<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 50%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay1" />
-									</div>
+								<div class="art-img" >
+										<img  v-if="item.cover" :src="formDateImgurl(item.cover)" alt="">
 								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="linkBgColor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.waitExamineInvestor') }}</p>
-										<p class="number">82367<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 30%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="keleBgColor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.examiningInvestor') }}</p>
-										<p class="number">827373<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 80%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconfufei0" />
-									</div>
-								</div>
-							</el-col>
+							</router-link>
+							<div class="art-meta">
+								<a href="javascript:;" class="art-heart heart-box mr20" >
+									<i class="heart-icon__pic"></i>
+									<span class="heart-icon__text">喜欢(<span class="like-num">50</span>)</span>
+								</a>
+								<a href="javascript:;" class="com-icon art-comment art-icon mr20">
+									<i class="com-icon__pic eye-icon"></i>
+									<span class="com-icon__text">阅读(50)</span>
+								</a>
+								<a href="" class="com-icon art-tag art-icon mr20">
+									<i class="com-icon__pic tag-icon" ></i>
+									<span class="com-icon__text">AA</span>
+								</a>
+							</div>
 						</div>
-					</el-col>
-				</el-row>
-			</a>
-			<el-row :gutter="10" class="row_list order_list">
-				<el-col :span="7">
-				    <pie-chart type="ordertype"></pie-chart>
-				</el-col>
-				<el-col :span="10">
-					<line-chart></line-chart>
-				</el-col>
-			   	<el-col :span="7">
-					<radar-chart></radar-chart>
-				</el-col>
-			</el-row> 
-			<el-row :gutter="10" class="row_list order_list">
-				<el-col :span="7">
-					<log-list></log-list>
-				</el-col>
-				<el-col :span="17">
-					<bar-chart type="barChart"></bar-chart>
-				</el-col>
-			</el-row>
-			
-			<el-row :gutter="10" class="row_list">
-				<el-col :span="11">
-					<sales-table></sales-table>
-				</el-col>
-				<el-col :span="7">
-					<comment-list></comment-list>
-				</el-col>
-				<el-col :span="6">
-					<card-list></card-list>
-				</el-col>
-			</el-row>
+					</article>
+				</section>
+			</main>
+			<pagination :pageTotal="pageTotal" @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"></pagination>
 			
 		</section>
 </template>
 
 <script>
-	import echarts from 'echarts'
-	import salesTable from "./components/salesTable";  // 销售数据表格
-	import commentList from "./components/commentList";  // 用户评论列表
-	import cardList from "./components/cardList";  // card列表
-	import logList from "./components/logList";  // 日志列表
-	import barChart from 'cps/echarts/barChart' // 用户投资类型 柱状图
-	import pieChart from 'cps/echarts/pieChart' // 用户投资类型 饼状图
-	import radarChart from 'cps/echarts/radarChart' // 用户投资类型 雷达图
-	import lineChart from 'cps/echarts/lineChart' // 用户投资类型 折线图
-	import { github } from "@/utils/env";
-
+	import { mapGetters } from "vuex";
+	import Pagination from "@/components/pagination";
+	import { login } from "@/api/user";
+	import { article_list } from "@/api/article";
     export default {
     	data(){
     		return {
-			  github:github
+			  pageTotal:100,
+			  Article_list:{}
     		}
     	},
     	components: {
-		   salesTable,
-		   commentList,
-		   cardList,
-		   logList,
-		   barChart,
-		   pieChart,
-		   radarChart,
-		   lineChart
+		   Pagination
 		},	
 		created(){
 		},
+		computed:{
+            ...mapGetters([]),     
+        },
     	mounted(){
+			this.Getarticle_list()
 		},
     	methods: {
+			formDateImgurl(url){
+				return `http://localhost:8081${url.replace(/\\/g,'/')}` 
+			},
+			jumpDetailUrl(id){
+				return `/index/details?id=${id}` 
+			},
+			// 上下分页
+            handleCurrentChange(val){
+                // this.incomePayData.page = val;
+                // this.getMoneyList()
+            },
+            // 每页显示多少条
+            handleSizeChange(val){
+                // this.incomePayData.limit = val;
+                // this.getMoneyList()
+            },
+			// id: 74
+			// user_ip: null
+			// email: null
+			// title: "温恩"
+			// content: ""
+			// summary: ""
+			// cover: "\image\2019\12\SDK_20191217190141.png"
+			// classify: "Git"
+			// type: 0
+			// status: 0
+			// star_number: 0
+			// number: 0
+			// create_time: "1576580511"
+			// update_time: "1576586929"
+			Getarticle_list() {
+				article_list().then(res => {
+					this.Article_list=res.Data.items;
+					this.pageTotal=res.total_row;
+				})
+			}
     	}
     }
 </script>
 
 <style lang="less" scoped>
+
 	.data_section{
 		margin: 20px;
 		border-radius: 2px;
@@ -220,5 +175,291 @@
 		}
      
 	}
-  
+	// 雪花
+	#canvas-box {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		pointer-events: none;
+		z-index: 500;
+	}
+  #main-wrap {
+    /* margin-left:  316px;
+    margin-right: 275px; */
+    #main-box {
+        position: relative;
+        .blog-element {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+    }
+    .article-item {
+        position: relative;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding-top: 30px;
+		border-left: .1rem solid #3b8cff;
+        &:nth-of-type(1) {
+            padding-top: 0;
+		}
+		.com-block{
+			box-shadow: 0 4px 8px 0 rgba(7, 17, 27, .05);
+			background-color: #fff;
+			border-radius: 2px;
+			box-sizing: border-box;
+			padding: 15px 18px;
+		}
+        .art-pretty {
+            position: relative;
+            left: -7px;
+            top: -8px;
+        }
+        .art-time {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            height: 20px;
+            line-height: 20px;
+            padding-left: 10px;
+            padding-right: 12px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            background-color: #3b8cff;
+            color: #fff;
+            font-size: 13px;
+            left: 15px;
+        }
+        .art-time:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent;
+            border-right-color: #3b8cff;
+            left: -20px;
+            top: 0;
+        }
+        .art-dotts {
+            display: inline-block;
+            vertical-align: middle;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b8cff;
+            border: 1px solid #3b8cff;
+        }
+        .art-main {
+            margin-top: 5px;
+            color: #3b8cff;
+        }
+        .art-wrap {
+            display: block;
+            text-align: right;
+            position: relative;
+            cursor: pointer;
+        }
+        .art-info {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            align-content: initial;
+            width: 80%;
+            height: 100%;
+            text-align: left;
+        }
+        /* 标题 */
+        .art-title {
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+			white-space: nowrap;
+			color: #1c1f21;
+            &:hover {
+                color: #1c1f21;
+            }
+        }
+        /* 前言 */
+        .art-note {
+            position: relative;
+            font-size: 12px;
+            height: 48px;
+            line-height: 24px;
+            box-sizing: border-box;
+            color: #1c1f21;
+            overflow: hidden;
+            text-align: justify;
+        }
+        /* 附图 */
+        .art-img {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            background-size: contain;
+            background-repeat: no-repeat;
+			background-position: center center;
+			position:relative;
+			top:2px;
+			img{
+				display:block;
+				height:100%;
+				width:100%
+			}
+        }
+        @keyframes heartBlast {
+            0% {
+                background-position-x: -6px;
+            }
+            100% {
+                background-position-x: -1136px;
+            }
+        }
+        @media screen and (max-width: 650px) {
+            .art-info {
+                width: 75%;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            .art-info {
+                width: 70%;
+            }
+        }
+        @media screen and (max-width: 470px) {
+            .art-img {
+                width: 80px;
+                height: 80px;
+            }
+            .art-meta {
+                font-size: 10px;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            .art-title {
+                font-size: 14px;
+            }
+            .art-note {
+                height: 24px;
+                font-size: 12px;
+                line-height: 24px;
+            }
+            .art-img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}
+.com-icon {
+    @size: 16px;
+    height: @size;
+    line-height: @size;
+    .com-icon__pic {
+        display: inline-block;
+        vertical-align: middle;
+        width: @size;
+        height: @size;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .com-icon__text {
+        display: inline-block;
+        height: @size;
+        vertical-align: middle;
+    }
+    .eye-icon {
+        background-image: url(../../assets/img/eye.png);
+    }
+    .calendar-icon {
+        background-image: url(../../assets/img/calendar.png);
+    }
+    .reply-icon {
+        background-image: url(../../assets/img/reply.png);
+        position: relative;
+        top: 2px;
+    }
+}
+/* 附属信息 */
+
+.art-meta {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    white-space: nowrap;
+	color: #202020;
+	a{
+		&>span{
+			display:inline-box;
+			padding-right:15px;
+			color:#1c1f21;
+		}
+	}
+	
+}
+
+/* 点赞 */
+
+.heart-box {
+    position: relative;
+    .art-icon__text {
+        padding-left: 15px;
+    }
+}
+
+.heart-icon__pic {
+    position: absolute;
+    width: 30px !important;
+    height: 35px !important;
+    left: -8px;
+    top: -11px;
+    background-image: url(../../assets/img/zan.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-size: 3900% !important;
+    background-position-x: -6px !important;
+    background-position-y: -1px !important;
+}
+
+.heart-icon__text {
+    padding-left: 15px !important;
+}
+
+.heart-box.act .heart-icon__pic {
+    display: inline-block;
+    animation-name: heartBlast;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    background-position-x: -1136px !important;
+}
+
+// 右边栏消失，mr变为0
+@media all and (max-width: 1300px) {
+    #main-wrap {
+        margin-right: 0;
+    }
+}
+
+// 垂直模式
+@media all and (max-width: 800px) {
+    #main-wrap {
+        margin-left: 0;
+    }
+    #message-box {
+        padding: 0 !important;
+    }
+}
 </style>
+<style>
+h2,h3{
+	font-weight:normal;
+}
+</style>	

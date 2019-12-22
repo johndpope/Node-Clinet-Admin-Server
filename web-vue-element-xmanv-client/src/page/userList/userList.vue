@@ -93,7 +93,7 @@
         data(){
             return {
                 tableData: [],
-                loading:true,
+                loading:false,
               //需要给分页组件传的信息
                 paginations: {
                     total: 0,        // 总数

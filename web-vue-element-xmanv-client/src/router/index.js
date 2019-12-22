@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import { Layout,Content }  from "../layout"; // 页面整体布局
 import { topRouterMap } from "./topRouter";
 
-
 // 此处是为了处理路由抛出的警告 vue-router.esm.js?8c4f:2007 Uncaught (in promise) undefined
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -42,14 +41,12 @@ export const constantRouterMap = [
 		hidden:true
   	},
 	{ path: '/login',name: 'login',component:() => import('@/page/login'),hidden: true},
-	{ path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
-  	{ path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
 	{
 		path: '/index',
 		name: 'index',
 		component:Layout,
 		meta:{
-			title:'首页',
+			title:'前端',
 		  	icon: 'icondashboard',
 		},
 		noDropdown:true,
@@ -59,41 +56,50 @@ export const constantRouterMap = [
 				meta:{
 					title:'首页', 
 					icon:'icondashboard',
-				  routerType:'leftmenu'
+				  	routerType:'leftmenu',
+					
 				},
-        		component: () => import('@/page/index/index'),
+        		component:() => import('@/page/index/index'),
+			},
+			{
+				path:'details', 
+				meta:{
+					title:'首页', 
+					icon:'icondashboard',
+				  	routerType:'leftmenu',
+					
+				},
+        		component:() => import('@/page/articledetail/index'),
 			}
 		]
-	}
-]
-
-	//注册路由
-export default new Router({
-	mode:'history', // 默认为'hash'模式
-	base: '', // 添加跟目录,对应服务器部署子目录
-	routes: constantRouterMap
-})
-
-  //异步路由（需要权限的页面）
-export const asyncRouterMap = [
+	},
 	{
 		path:'/userManager',
 		name: 'userManage',
 		component:Layout,
 		meta: {
-			title:'用户管理',
+			title:'后端',
 			icon: 'iconuser',
 		},
 		noDropdown:true,
 		children:[
 			{
 				path:'userList', 
+				name:'userList',
 				meta:{
 					title:'用户管理', 
 					icon:'iconuser',
-				  routerType:'leftmenu'
+				  	routerType:'leftmenu',
+					titleList:[
+						{"path":"infoShow1","title":"个人信息子菜单1"},
+						{"path":"infoShow2","title":"个人信息子菜单2"},
+						{"path":"infoShow3","title":"个人信息子菜单3"},
+						{"path":"infoShow4","title":"个人信息子菜单4"},
+						{"path":"infoShow5","title":"个人信息子菜单5"},
+					]
 				},
 				component: () => import('@/page/userList/userList'),
+				children:filterTopRouterMap('userList')
 			}
 		]
 	},
@@ -102,7 +108,7 @@ export const asyncRouterMap = [
 		name: 'share',
 		component:Layout,
 		meta: {
-			title:'分享功能',
+			title:'生活',
 			icon: 'iconshare',
 		},
 		noDropdown:true,
@@ -118,192 +124,48 @@ export const asyncRouterMap = [
 			}
 		]
 	},
+	{ 
+		path: '*', 
+		redirect: '/404', 
+		hidden: true 
+	}
+	
+]
+
+	//注册路由
+export default new Router({
+	mode:'history', // 默认为'hash'模式
+	base: '', // 添加跟目录,对应服务器部署子目录
+	routes: constantRouterMap
+})
+
+  //异步路由（需要权限的页面）
+export const asyncRouterMap = [
 	{
-	  path:'/infoManage',
-	  name: 'infoManage',
-	  meta: {
-			title:'信息管理',
-			icon: 'iconinfo',
-	  },
-	  component:Layout,
-	  children:[
-		{
-		   path:'infoShow',
-		   name:'infoShow',
-		   meta: {
-					title:'个人信息',
-					icon: 'iconinfo',
-					routerType:'leftmenu',
-					titleList:[
-						{"path":"infoShow1","title":"个人信息子菜单1"},
-						{"path":"infoShow2","title":"个人信息子菜单2"},
-						{"path":"infoShow3","title":"个人信息子菜单3"},
-						{"path":"infoShow4","title":"个人信息子菜单4"},
-						{"path":"infoShow5","title":"个人信息子菜单5"}
-					]	
-			 },
-	  	 	 component:Content,
-			 children:filterTopRouterMap('infoShow')
-		},
-		{
-			path:'infoModify',
-			name:'infoModify',
-			meta: {
-				title:'修改信息',
-				icon: 'iconinfo',
-				routerType:'leftmenu',
-				titleList:[
-					{"path":"infoModify1","title":"修改信息子菜单1"},
-					{"path":"infoModify2","title":"修改信息子菜单2"},
-					{"path":"infoModify3","title":"修改信息子菜单3"}
-				]
-			},
-			component:Content,
-			children:filterTopRouterMap('infoModify')
-		 }
-	  ]
-	},
-	{
-		path:'/fundManage',
-		name: 'fundManage',
-		meta: {
-		  title:'资金管理',
-		  icon: 'iconpay3',
-		},
+		path:'/share2',
+		name: 'share',
 		component:Layout,
-		children:[
-		  {
-			path:'fundList',
-			name:'fundList',
-			meta: {
-					title:'资金流水',
-					routerType:'leftmenu'
-			},
-			component: () => import('@/page/fundList/fundList'),
-		  },
-		  {
-			path:'chinaTabsList',
-			name:'chinaTabsList',
-			meta: {
-				title:'区域投资',
-				routerType:'leftmenu'
-			},
-			component: () => import('@/page/fundList/chinaTabsList'),
-			}
-		]
-	},
-	{
-		path:'/fundData',
-		name: 'fundData',
 		meta: {
-		  title:'资金数据',
-		  icon: 'iconecharts',
+			title:'分享功能',
+			icon: 'iconshare',
+			roles: ['admin']
+			
 		},
-		component:Layout,
-		redirect: '/fundData/fundPosition',
+		noDropdown:true,
 		children:[
-		  {
-			 path:'fundPosition',
-			 name:'fundPosition',
-			 meta: {
-				  title:'投资分布'
-			 },
-			 component: () => import('@/page/fundData/fundPosition')
-		  },
-		  {
-			  path:'typePosition',
-			  name:'typePosition',
-			  meta: {
-				   title:'项目分布'
-				},
-				component: () => import('@/page/fundData/typePosition')
-		   },
-		   {
-				path:'incomePayPosition',
-				name:'incomePayPosition',
-				meta: {
-					title:'收支统计'
-				},
-				component: () => import('@/page/fundData/incomePayPosition')
-		    }
-		]
-	},
-	{
-    path: '/permission',
-		name: 'permission',
-		meta: {
-		title: '权限设置',
-		icon: 'iconpermission',
-		roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    component: Layout,
-    redirect: '/permission/page',
-    children: [{
-			path: 'page',
-			name: 'pagePer',
-			meta: {
-				title: '页面权限',
-				roles: ['admin'] // or you can only set roles in sub nav
-			},
-      		component: () => import('@/page/permission/page'),
-    }, {
-			path: 'directive',
-			name: 'directivePer',
-			meta: {
-				title: '按钮权限',
-				roles:['editor']
-			},
-			component: () => import('@/page/permission/directive'),
-    }]
-  },
-  {
-    path: '/error',
-    component: Layout,
-    name: 'errorPage',
-    meta: {
-      title: '错误页面', 
-      icon: 'iconError'
-    },
-    children: [
-			{  
-				path: '401', 
-				name: 'page401', 
-				component: () => import('@/page/errorPage/401'), 
-				meta: { 
-					title: '401', 
-					noCache: true 
-			  	}
-			},
 			{
-				path: '404', 
-				name: 'page404', 
-				component: () => import('@/page/errorPage/404'), 
-				meta: { 
-					title: '404', 
-					noCache: true
-				}
+				path:'share2', 
+				meta:{
+				  title:'分享功能', 
+				  icon:'iconshare',
+				  routerType:'leftmenu',
+				  roles: ['admin']
+				},
+				component: () => import('@/page/share'),
 			}
-    ]
-  },
-  { path: '*', redirect: '/404', hidden: true }
+		]
+	},
+	
 ];
 	
-	/**
-	 *  路由设置要求：
-	 * 1、该路由有子菜单,可以设置多层嵌套路由children;如果没有子菜单,不需要设置children;通过item.children.length来判断路由的级数;
-	 * 2、登录成功后,定位到系统首页时,需要加载页面整体布局组件Layout并进行子路由定向加载;
-	 * 
-	 * 按需加载路由组件的2种方法：
-	 * 1、component: () => import('@/page/login')
-	 * 2、component:resolve => require(['@/page/fundPosition'], resolve)
-	 * 
-	 * 
-	 * 
-	 * 什么情况下，路由会定位到404页面?
-	 * 路由中redirect:'',不起作用？
-	 * 三级子菜单要在顶部展示？
-	 * 
-	 * 
-	 * 
-	 */
 

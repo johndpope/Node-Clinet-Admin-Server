@@ -158,7 +158,7 @@ export const asyncRouterMap = [
 					{"path":"infoModify3","title":"修改信息子菜单3"}
 				]
 			},
-			component:Content,
+			component:() => import('@/page/infoManage/infoShow'),
 			children:filterTopRouterMap('infoModify')
 		 }
 	  ]

@@ -22,7 +22,7 @@
           return {
             paginations: {
                 pageIndex: 1,  // 当前位于哪页
-                pageSize: 20,   // 1页显示多少条
+                pageSize: 10,   // 1页显示多少条
                 pageSizes: [5, 10, 15, 20],  //每页显示多少条
                 layout: "total, sizes, prev, pager, next, jumper"   // 翻页属性
             },
@@ -52,7 +52,7 @@
 
 <style lang="less" scoped>
     .pagination{
-        text-align: right;
-        padding: 10px 18px;
+        text-align: center;
+        padding:35px 18px 75px;
     }
 </style>

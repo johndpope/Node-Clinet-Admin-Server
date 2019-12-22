@@ -3,7 +3,7 @@ const zh = {
     commons: {
       xiaoai: 'Ai.',
       admin: 'Admin',
-      editor: 'Editor',
+      editor: 'Visitors',
       quit: 'Sign Out',
       hi: 'Hi',
       index: 'Dashboard',

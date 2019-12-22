@@ -1,5 +1,5 @@
 <template>
-  	<div class="login_page">
+  	<div class="login_page" v-if="loginOut">
 	  	<transition name="form-fade" mode="in-out">
 	  		<section class="form_contianer">
 			     <div class='titleArea rflex'>
@@ -9,11 +9,11 @@
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 					<el-form-item prop="username" class="login-item">
 					    <span class="loginTips"><icon-svg icon-class="iconuser" /></span>
-						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
+						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="请输入用户名" v-model="loginForm.username" ></el-input>
 					</el-form-item>
 					<el-form-item prop="password" class="login-item"> 
 					    <span class="loginTips"><icon-svg icon-class="iconLock" /></span>
-						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="请输入密码" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-form-item>
 				    	<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">SIGN IN</el-button>
@@ -44,17 +44,17 @@
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
 	import logoImg from "@/assets/img/logo.png";
 	import { login } from "@/api/user";
     import { setToken } from '@/utils/auth'
 	import { md5 } from '@/utils/utils'
-
 	export default {
 	    data(){
 			return {
 				logo:logoImg,
 				loginForm: {
-					username: 'admin',
+					username: 'editor',
 					password: '123456'
 				},
 				rules: {
@@ -68,7 +68,14 @@
 				}
 			}
 		},
+		computed:{
+            ...mapGetters(['loginOut']),     
+        },
 		mounted(){
+			if(!this.loginOut){
+				this.submitForm();
+			}
+			
 		},
 		methods: {
 			loginByWechat(){
@@ -82,21 +89,21 @@
 		    submitForm(loginForm) {
 				var timestamp = Date.parse(new Date()) / 1000
 				let user_ticket = md5(md5((md5((this.loginForm.username).toLowerCase() + md5(this.loginForm.password))).toLowerCase()) + timestamp)
-				this.$refs[loginForm].validate((valid) => {
-					if (valid) {
-						let userinfo = {
-								'user_ticket': user_ticket,
-								'name': this.loginForm.username,
-								'timestamp': timestamp
-							}
-						login(userinfo).then(res => {
-							let userList = res.Data;
-							setToken("Token",JSON.stringify(userList))
-							this.$router.push({ path: '/' })
-							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-						})
-					}
-				});
+				// this.$refs[loginForm].validate((valid) => {
+				// 	if (valid) {
+				let userinfo = {
+						'user_ticket': user_ticket,
+						'name': this.loginForm.username,
+						'timestamp': timestamp
+				}
+				login(userinfo).then(res => {
+					let userList = res.Data;
+					setToken("Token",JSON.stringify(userList))
+					this.$router.push({ path: '/' })
+					this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
+				})
+					// }
+				// });
 			}
 		}
 	}

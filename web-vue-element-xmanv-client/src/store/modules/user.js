@@ -10,7 +10,8 @@ const user  = {
     avatar:'',
     token: getToken('Token'),
     roles: [],
-    browserHeaderTitle: mUtils.getStore('browserHeaderTitle') || '小爱Admin'
+    browserHeaderTitle: mUtils.getStore('browserHeaderTitle') || 'Xman漫威',
+    loginOut:false
   },
   getters : {
     token: state => state.token,
@@ -18,6 +19,7 @@ const user  = {
     avatar: state => state.avatar,
     name: state => state.name,
     browserHeaderTitle: state => state.browserHeaderTitle,
+    loginOut:state => state.loginOut
   },
   mutations: {
     SET_ROLES: (state, roles) => {
@@ -25,6 +27,9 @@ const user  = {
     },
     SET_BROWSERHEADERTITLE: (state, action) => {
         state.browserHeaderTitle = action.browserHeaderTitle
+    },
+    SET_LOGINOUT: (state, data) => {
+        state.loginOut = data
     },
     SET_NAME: (state, name) => {
       state.name = name

@@ -48,6 +48,7 @@
 	import { login } from "@/api/user";
     import { setToken } from '@/utils/auth'
 	import { md5 } from '@/utils/utils'
+	import { Loading } from 'element-ui';
 
 	export default {
 	    data(){
@@ -82,6 +83,13 @@
 		    submitForm(loginForm) {
 				var timestamp = Date.parse(new Date()) / 1000
 				let user_ticket = md5(md5((md5((this.loginForm.username).toLowerCase() + md5(this.loginForm.password))).toLowerCase()) + timestamp)
+				// const loadings=Loading.service(
+				// 	{ lock: true,
+				// 		text: 'Loading',
+				// 		spinner: 'el-icon-loading',
+				// 		background: 'rgba(0, 0, 0, 0.7)'
+				// 	}
+				// );
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
 						let userinfo = {
