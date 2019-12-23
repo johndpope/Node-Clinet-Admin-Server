@@ -17,6 +17,10 @@ import '@/permission' // permission control
 // i18n国际化
 import i18n from "@/lang";
 
+// 编辑器
+// import mavonEditor from 'mavon-editor'
+// import 'mavon-editor/dist/css/index.css'
+// Vue.use(mavonEditor)
 // 分享功能集合
 import { shareConfig } from './utils/share';
 Vue.prototype.shareConfig = shareConfig;

@@ -69,6 +69,7 @@ const articleSelect = async ctx => {
  *查询文章
  */
 const articleList = async ctx => {
+	console.log(ctx)
 	let {
 		where = {},
 			order = [

@@ -1,555 +1,285 @@
 <template>
-		<section class="data_section" ref="data_section"> 
-			<!-- <a :href="github" target="_blank">
-				<el-row :gutter="10" class="row_list">
-					<el-col :span="8">
-						<div class="row_left row_base">
-							<el-col :span="12">
-								<div class="pay saleBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.yearLoss') }}</p>
-										<p class="number">68<span class="perTitle">({{ $t('index.tenMillion') }})</span></p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconfukuan" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="12">
-								<div class="pay taxBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.yearProfit') }}</p>
-										<p class="number">120<span class="perTitle">(%)</span></p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay3" />
-									</div>
-								</div>
-							</el-col>
-						</div>
-					</el-col>
-					<el-col :span="16">
-						<div class="row_right row_base">
-							<el-col :span="6">
-								<div class="extenedBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.potentialInvestor') }}</p>
-										<p class="number">686<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 10%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay2" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="likeBgcolor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.intentionInvestor') }}</p>
-										<p class="number">1276<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 50%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay1" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="linkBgColor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.waitExamineInvestor') }}</p>
-										<p class="number">82367<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 30%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconpay" />
-									</div>
-								</div>
-							</el-col>
-							<el-col :span="6">
-								<div class="keleBgColor data_list rflex">
-									<div class="leftItem cflex wflex">
-										<p class="investor">{{ $t('index.examiningInvestor') }}</p>
-										<p class="number">827373<span class="perTitle">({{ $t('index.person') }})</span></p>
-										<p class="cardText">Decreased by 80%</p>
-									</div>
-									<div class="rightItem">
-										<icon-svg icon-class="iconfufei0" />
-									</div>
-								</div>
-							</el-col>
-						</div>
-					</el-col>
-				</el-row>
-			</a>
-			<el-row :gutter="10" class="row_list order_list">
-				<el-col :span="7">
-				    <pie-chart type="ordertype"></pie-chart>
-				</el-col>
-				<el-col :span="10">
-					<line-chart></line-chart>
-				</el-col>
-			   	<el-col :span="7">
-					<radar-chart></radar-chart>
-				</el-col>
-			</el-row> 
-			<el-row :gutter="10" class="row_list order_list">
-				<el-col :span="7">
-					<log-list></log-list>
-				</el-col>
-				<el-col :span="17">
-					<bar-chart type="barChart"></bar-chart>
-				</el-col>
-			</el-row>
-			
-			<el-row :gutter="10" class="row_list">
-				<el-col :span="11">
-					<sales-table></sales-table>
-				</el-col>
-				<el-col :span="7">
-					<comment-list></comment-list>
-				</el-col>
-				<el-col :span="6">
-					<card-list></card-list>
-				</el-col>
-			</el-row> -->
-			<main id="main-wrap">
-				<section id="main-box">
-						<div id="markdown-wrap" class="clear">
-							<div id="markdown-main" class="markdown-main com-block">
-								<!-- 文字标题 -->
-								<div class="markdown-title">
-									<h1>文字标题</h1>
-								</div>
-								<!-- 文章元信息 -->
-								<div class="markdown-meta">
-									<!-- 文章发布时间 -->
-									<time class="com-icon meta-time">
-										<i class="com-icon__pic calendar-icon">&nbsp;</i>
-										<span class="com-icon__text">文章元信息</span>
-									</time>
-									<!-- 文章点赞 -->
-									<!-- <a href="javascript:;" class="com-icon heart-box art-heart art-icon {{? it.is_like }} act {{?}}" data-aid="{{=it.aid}}">
-										<i class="com-icon__pic heart-icon__pic"></i>
-										<span class="com-icon__text heart-icon__text">喜欢(<span class="like-num">{{=it.like_count}}</span>)</span>
-									</a> -->
-									<!-- 文章阅读量 -->
-									<span class="com-icon meta-like">
-										<i class="com-icon__pic eye-icon">&nbsp;</i>
-										<span class="com-icon__text">阅读(500)</span>
-									</span>
-									<!-- 文章标签 -->
-									<a href="" class="com-icon art-tag art-icon">
-										<i class="com-icon__pic tag-icon" style="background-image: url()"></i>
-										<span class="com-icon__text">文章标签</span>
-									</a>
-								</div>
-								<!-- 文章前言 -->
-								<div class="markdown-preface">文章前言</div>
-								<!-- 文章封面 -->
-								<!-- style="background-image:url()" -->
-								<div class="markdown-cover" ></div>
-								<!-- 文章内容 -->
-								<div class="markdown-content">
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-										文章内容 <br>
-								</div>
-								<!-- 文章评论 -->
-								<div class="markdown-comment">
-											asijdhasdisahdsa
-											asjdsahnjdsand 
-											asdjksahjdsand 
-								</div>
-							</div>
-							<!-- 目录 -->
-							<div class="markdown-action com-scroll">
-								<div class="markdown-action-wrap">
-									<div class="mb20">
-										<div class="markdown-catalog com-block">
-											<div class="markdown-catalog-title">
-												<span class="markdown-catalog-item">目录</span>
-											</div>
-											目录内容  <br>
-											目录内容  <br>
-											目录内容  <br>
-											目录内容  <br>
-											目录内容  <br>
-											目录内容  <br>
-										</div>
-									</div>
-									<!-- 操作 -->
-									<div class="mb20">
-										<div class="markdown-handler">
-										<!-- 评论区 -->
-										<el-badge :value="12" class="item">
-											<el-button size="mini" type="primary">评论区</el-button>
-										</el-badge>
-										<!-- 点赞 -->
-										<el-badge :value="12" class="item">
-											<el-button size="mini" type="danger">喜欢</el-button>
-										</el-badge>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				</section>
-			</main>
-			<!-- 雪花 -->
-			<div id="canvas-box">
-				<canvas id="canvasBg"></canvas>
-			</div>
+		<section class="wrap"> 
+            <div class="posteditContent">
+                <div class="post-from">
+                    <el-form ref="form" :model="form" :rules="ruleValidate">
+                        <el-form-item label="文章标题" prop="title">
+                            <el-input class="inputWidth500" v-model="form.title" placeholder="标题..."></el-input>
+                        </el-form-item>
+                        <el-form-item label="E-email" prop="title">
+                            <el-autocomplete class="inputWidth500" v-model="form.email" :fetch-suggestions="handleSearch2" placeholder="敢问英雄是否愿意留下邮箱">
+                                <!-- <el-option v-for="item in data2" :value="item" :key="item" >{{ item }}</el-option> -->
+                            </el-autocomplete>
+                        </el-form-item>  
+                        <el-form-item label="文章类型" prop="title" >
+                            <el-tag v-for="item in form.classify" class="marginright15" size="medium" type='' :key="item" :name="item" :disable-transitions="false" closable  @close="handleClose(item)">{{ item}}</el-tag>
+                            <el-select  class="inputWidth150 marginright15" @change="selectChange" v-model="classify">
+                                <el-option v-for="(item, index) in classifyList" :value="item" :key="index" :label="item"></el-option>
+                            </el-select>
+                            <el-input v-model="classify" placeholder="请填写文章类型" clearable class="inputWidth150 marginright15"  @on-enter="inputChange" @on-blur="inputChange"></el-input>
+                        </el-form-item>
+                        <el-form-item label="封面图" prop="title">
+                            <el-upload
+                                class="avatar-uploader"
+                                action="http://localhost:8081/api/upload"
+                                :show-file-list="false"
+                                :on-success="handleSuccess"
+                                >
+                                <img v-if="imgUrl" :src="imgUrl" class="avatar">
+                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                            </el-upload>
+                        </el-form-item> 
+                    </el-form>
+                </div>
+                <div id="main">
+                        <mavon-editor ref="md" style="height: 100%"
+                        v-model="content" 
+                        :ishljs="true"
+                        @imgAdd="imgAdd"
+                        @change="articleSave"
+                        > </mavon-editor>
+                </div>
+                <div class="submit skd-text-center">
+                    <el-button type="primary" @click="handleSubmit('form')">提交</el-button>
+                </div>
+            </div>
 		</section>
 </template>
 
 <script>
+import {mavonEditor} from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+import { imgupload,article_add } from "@/api/article";
     export default {
     	data(){
     		return {
+                content: "",
+				editorOption: {
+					modules: {
+						toolbar: '#toolbar'
+					},
+					placeholder: '请输入内容...',
+				},
+				classifyList: ["html", "java", "html5", "Git", "svn", "javascript","程序员人生", "php", "css", "VueJS", "python", "node.js", "c++", "c objective-c", "golang", "shell", "swift", "c#", "ruby", "bash", "typescript", "sass asp.net", "less", "lua", "scala", "coffeescript", "actionscript", "erlang", "perl", "rust", "laravel", "spring", "django", "flask", "express", "ruby-on-rails", "yii", "tornado", "koa", "linux", "nginx", "apache", "docker", "ubuntu", "centos", "tomcat", "缓存 负载均衡", "unix", "hadoop", "mysql", "redis", "mongodb", "oracle", "nosql", "memcached", "sqlserver", "sqlite", "postgresql"],
+				classify: '',
+				imgUrl: '',
+				url: "",
+				showContent: false,
+				data2: [],
+				summary: '', //摘要
+				form: {
+					title: '',
+					email: '',
+					classify: [],
+                    markdownText:"",
+                    markdownHtml:''
+				},
+				ruleValidate: {
+					title: [{
+						required: true,
+						message: '请填写标题！',
+						trigger: 'blur'
+					}]
+				}
     		}
     	},
     	components: {
+            mavonEditor,
 		},	
 		created(){
 		},
     	mounted(){
 		},
     	methods: {
+            imgAdd(pos, file) {
+            const $mavon = this.$refs.md;
+            const formdata = new FormData();
+            formdata.append("file", file);
+            imgupload(formdata).then((res) => {
+                $mavon.$img2Url(pos, `${res.realName}`);
+                })
+                .finally(() => {
+
+                });
+            },
+            handleSuccess(res, file) {
+				this.$message({
+                    message: '恭喜你，这是一条成功消息',
+                    type: 'success'
+                });
+				this.imgUrl = `http://localhost:8081${res.realName}`;
+			},
+			// handleFormatError(file) {
+            //     this.$message({
+            //         message: `你的${file.name} 请你选择 jpg ， png，jpeg`,
+            //         type: 'warning'
+            //     });
+			// },
+			// handleMaxSize(file) {
+			// 	this.$Notice.warning({
+			// 		title: '文件过大',
+			// 		desc: '文件  ' + file.name + ' 上传文件小于 2M.'
+			// 	});
+			// },
+			handleSubmit(name) {
+				this.$refs[name].validate((valid) => {
+					if(valid) {
+						this.submitAreicle()
+					} else {}
+				})
+			},
+			handleSearch2(queryString,cb) {
+				this.data2 = !queryString || queryString.indexOf('@') >= 0 ? [] : [
+					queryString + '@qq.com',
+					queryString + '@163.com',
+					queryString + '@126.com',
+					item + '@sina.com',
+					queryString + '@gemail.com',
+				];
+                cb(this.data2);
+			},
+			handleClose(event, name) {
+				let index = this.form.classify.indexOf(name);
+				this.form.classify.splice(index, 1);
+			},
+			selectChange(value) {
+				this.form.classify.push(value)
+				this.classify = ''
+			},
+			inputChange() {
+				if(!this.classify)return
+				this.form.classify.push(this.classify)
+				this.classify = ''
+			},
+            articleSave(markdownText, markdownHtml) {
+                this.form.markdownText = markdownText;
+                this.form.markdownHtml = markdownHtml;
+            },
+			submitAreicle() {
+				article_add(
+                    { 
+						title: this.form.title,
+						type: 1,
+						status: 1,
+						content: this.form.markdownHtml,
+						eemail: this.form.email,
+						cover: this.imgUrl,
+						summary: this.summary,
+						classify: this.form.classify.join(',')
+					}
+				).then(res => {
+                    debugger
+					if(res.code == "10000") {
+						var url = `/index/details?id=${res.Data.id}` ;
+						this.$router.push(url);
+                        this.$message({
+                            message: '添加文章成功,感谢你的支持',
+                            type: 'success'
+                        });
+					} else {
+						this.$message({
+                            message: `很抱歉服务器异常`,
+                            type: 'warning'
+                        });
+					}
+				}).catch(err => {
+                    this.$message({
+                            message:`失误：${err}`,
+                            type: 'warning'
+                    });
+				})
+			}
     	}
     }
 </script>
 
 <style lang="less" scoped>
-#markdown-wrap {
-	position: relative;
-	padding:30px;
-}
-.com-block{
-	box-shadow: 0 4px 8px 0 rgba(7, 17, 27, .05);
-	background-color: #fff;
-	border-radius: 2px;
-	box-sizing: border-box;
-	padding: 15px 18px;
-}
-/* 文章主要内容 */
-
-#markdown-main {
-    position: relative;
-    width: calc(100% - 200px);
-    overflow: auto;
-    text-align: justify;
-    padding-bottom: 0;
-
-    /* 标题 */
-    .markdown-title {
-        margin-bottom: 16px;
-        font-size: 18px;
-        text-align: center;
-
-        h1 {
-            font-weight: bold;
-        }
-    }
-
-    /* 附属信息 */
-    .markdown-meta {
-        max-width: 320px;
-        display: flex;
-        justify-content: space-around;
-        font-size: 12px;
-        margin: 16px auto;
-    }
-
-    /* 前言 */
-    .markdown-preface {
-        font-size: 13.5px;
-        line-height: 30px;
-        text-indent: 2em;
-        background-color: #f8f8f8;
-        color: #666;
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-weight: bolder;
-    }
-
-    /* 封面 */
-    .markdown-cover {
-        position: relative;
-        background-size: 100%;
-        border-radius: 4px;
-        overflow: hidden;
-        background-position: 50%;
-        background-repeat: no-repeat;
-		margin-top: 20px;
-		background:url(../../assets/img/bg.jpg) no-repeat center;
-		background-size:100%
-    }
-
-    /* 封面填充 */
-    .markdown-cover:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-    .markdown-cover:after {
-        content: '';
-        display: block;
-        padding-top: 35%;
-        width: 100%;
-    }
-
-    /* 覆盖markdown */
-    .markdown-content {
-        font-size: 16px;
-
-        ul {
-            list-style: disc;
-            margin: 16px;
-        }
-
-        ol {
-            margin: 16px;
-        }
-
-        p {
-            margin: 16px 0;
-            line-height: 3;
-        }
-
-        li {
-            margin-top: 5px;
-            line-height: 3;
-        }
-
-        /* 引用 */
-        blockquote {
-            padding: 1px 23px;
-            margin: 22px 0;
-            border-left: 4px solid #cbcbcb;
-            background-color: #f8f8f8;
-            color: #666;
-
-            p {
-                margin: 8px 0;
-            }
-        }
-
-        /* 表格 */
-        table {
-            tr {
-                background-color: #fff;
-                border-top: 1px solid #eee;
-
-                &:nth-child(2n) {
-                    background-color: #f8fafc;
-                }
-            }
-
-            th,
-            td {
-                padding: 6px 13px;
-                border: 1px solid #eee;
-            }
-        }
-
-        pre {
-            font-size: 14px;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        h1 {
-            font-size: 18px;
-        }
-
-        h2 {
-            font-size: 16px;
-        }
-
-        h3 {
-            font-size: 14px;
-        }
-
-        h4 {
-            font-size: 18px;
-        }
-
-        img {
-            width: 100%;
-        }
-
-        mark {
-            background-color: #3b8cff;
-            color: #fff;
-            padding: 3px 5px;
-            border-radius: 2px;
-            margin: 0 2px;
-        }
-
-        .hljs {
-            line-height: 1.5;
-        }
-
-        a {
-            color: #3b8cff;
-
-            &:hover {
-                color: lighten(#3b8cff, 10%);
-                text-decoration: underline;
-            }
-        }
-    }
+.wrap{
+    background:#ebebeb;
+    padding-bottom:250px;
 }
 
-/* 目录 */
-
-.markdown-action {
-    position: absolute;
-    width: 200px;
-    min-height: 100%;
-    right: 0;
-    top: 30px;
-    box-sizing: border-box;
+#main{
+    box-size:border-box;
+    margin:50px auto 0;
+    width:98%;
+    height: 600px;
 }
+.posteditContent {
+		padding: 20px;
+		// background: #FFFFFF;
+	}
+	
+	.posteditContent .ql-container {
+		height: 500px !important;
+	}
+	
+	.ql-snow .ql-tooltip {
+		left: 0 !important;
+	}
+	
+	.weButton {
+		margin: 20px;
+	}
+	
+	.inputWidth500 {
+		width: 500px;
+	}
+	
+	.showArticle {
+		margin-bottom: 20px;
+		padding: 10px;
+		background: #fff;
+	}
+	
+	.tadRigth {
+		margin-right: 66px;
+	}
+	
+	.w-e-text {
+		padding: 0;
+		overflow-y: auto;
+	}
+	
+	.w-e-text-container {
+		height: 400px !important;
+	}
+	
+	.submit button {
+		width: 20%;
+		margin: 20px;
+	}
+	
+	.inputWidth150 {
+		width: 150px;
+	}
 
-.markdown-action-wrap {
-    position: fixed;
-    width: 180px;
-}
-
-.markdown-comment {
-    padding-top: 1px;
-	margin-top: 10px;
-	box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.05);
-	// background:red;
-}
-
-.markdown-catalog {
-    width: 100%;
-
-    .markdown-catalog-title {
-        font-size: 16px;
-        font-weight: bold;
-        color: #1c1f21;
-        text-align: center;
-        margin-bottom: 16px;
-        letter-spacing: 2px;
-
-        .markdown-catalog-item {
-            padding: 3px 8px;
-            border-bottom: 2px solid #3b8cff;
-            color: #3b8cff;
-        }
-    }
-
-    .catalog-item {
-        color: #1c1f21;
-        margin-bottom: 5px;
-    }
-
-    .catalog-item.act {
-        background-color: #f8fafc;
-        color: #3b8cff;
-        font-weight: bold;
-    }
-
-    .catalog-link {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 3px 0;
-
-        &:before {
-            content: '';
-            position: relative;
-            display: inline-block;
-            background-color: currentColor;
-            border-radius: 50%;
-        }
-    }
-
-    .catalog-h1 {
-        font-size: 14px;
-
-        .catalog-link:before {
-            width: 7px;
-            height: 7px;
-            margin-right: 4px;
-            top: -1px;
-        }
-    }
-
-    .catalog-h2 {
-        font-size: 13px;
-        padding-left: 5px;
-
-        .catalog-link:before {
-            width: 6px;
-            height: 6px;
-            margin-right: 4px;
-            top: -2px;
-        }
-    }
-
-    .catalog-h3 {
-        font-size: 12px;
-        padding-left: 20px;
-
-        .catalog-link:before {
-            width: 5px;
-            height: 5px;
-            margin-right: 5px;
-            top: -1px;
-        }
-    }
-}
-
-.markdown-handler {
-	display: flex;
-    flex-direction: row;
-    justify-content: space-around ;
-    align-items: center;
-	margin-top:15px;
-}
-
-@media screen and (max-width: 1100px) {
-    #markdown-box {
-        height: auto;
-        padding: 0 !important;
-    }
-
-    #markdown-main {
-        width: 100%;
-    }
-
-    .markdown-action {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    #markdown-main .markdown-title {
-        font-size: 16px;
-    }
-}
 </style>
-<style>
-h2,h3{
-	font-weight:normal;
+<style >  
+.marginright15{
+    margin-right:10px;
 }
-</style>	
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+    display: block;
+  }
+</style > 

@@ -38,7 +38,7 @@ const uploadImg = async ctx => {
 		ctx.body = {
 			code: consts.ERROR_CODE.SUCCESS,
 			message: '上传文件成功',
-			realName: uplaod_img,
+			realName: uplaod_img.replace(/\\/g,'/'),
 		}
 	}).catch(err => {
 		LogFile.error(err)

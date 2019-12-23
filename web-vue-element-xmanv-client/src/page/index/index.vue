@@ -65,41 +65,41 @@
             ...mapGetters([]),     
         },
     	mounted(){
-			this.Getarticle_list()
+			this.Getarticle_list({
+                        row_start:10,
+                        row_count:10
+                    } )
 		},
     	methods: {
 			formDateImgurl(url){
-				return `http://localhost:8081${url.replace(/\\/g,'/')}` 
+				return `http://localhost:8081${url}` 
 			},
 			jumpDetailUrl(id){
 				return `/index/details?id=${id}` 
 			},
 			// 上下分页
             handleCurrentChange(val){
+                
                 // this.incomePayData.page = val;
-                // this.getMoneyList()
+                this.Getarticle_list(
+                    {
+                        row_start:val*10>this.pageTotal?(val-1)*10:val*10,
+                        row_count:val*10>this.pageTotal?this.pageTotal-(val-1)*10:val*10
+                    } 
+                )
             },
             // 每页显示多少条
             handleSizeChange(val){
                 // this.incomePayData.limit = val;
-                // this.getMoneyList()
+                this.Getarticle_list(
+                    {
+                        row_start:val*10,
+                        row_count:10
+                    } 
+                )
             },
-			// id: 74
-			// user_ip: null
-			// email: null
-			// title: "温恩"
-			// content: ""
-			// summary: ""
-			// cover: "\image\2019\12\SDK_20191217190141.png"
-			// classify: "Git"
-			// type: 0
-			// status: 0
-			// star_number: 0
-			// number: 0
-			// create_time: "1576580511"
-			// update_time: "1576586929"
-			Getarticle_list() {
-				article_list().then(res => {
+			Getarticle_list(params) {
+				article_list(params).then(res => {
 					this.Article_list=res.Data.items;
 					this.pageTotal=res.total_row;
 				})

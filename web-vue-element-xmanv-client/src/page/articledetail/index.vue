@@ -35,7 +35,7 @@
 								<div class="markdown-preface">{{Article_detail.summary}}</div>
 								<!-- 文章封面 -->
 								<!-- style="background-image:url()" -->
-								<div class="markdown-cover" ></div>
+								<div class="markdown-cover" :style="returnBg(Article_detail.cover)"></div>
 								<!-- 文章内容 -->
 								<div class="markdown-content" v-html="Article_detail.content">
 
@@ -166,6 +166,9 @@
             
 		},
     	methods: {
+            returnBg(url){
+                return `background-image:url(${url})` 
+            },
             activeEvent(num){
                 if($('#myScrollbar')[0].scrollTop>=0&&$('#myScrollbar')[0].scrollTop<=that.catalog[0].top){
                                 that.scroll=0
@@ -262,7 +265,7 @@
         background-position: 50%;
         background-repeat: no-repeat;
 		margin-top: 20px;
-		background:url(../../assets/img/bg.jpg) no-repeat center;
+		// background:url(../../assets/img/bg.jpg) no-repeat center;
 		background-size:100%
     }
 
