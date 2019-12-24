@@ -2,21 +2,21 @@
 		<section class="wrap"> 
             <div class="posteditContent">
                 <div class="post-from">
-                    <el-form ref="form" :model="form" :rules="ruleValidate">
+                    <el-form ref="form" :model="form" :rules="ruleValidate" label-width="80px">
                         <el-form-item label="文章标题" prop="title">
-                            <el-input class="inputWidth500" v-model="form.title" placeholder="标题..."></el-input>
+                            <el-input class="inputWidth500" v-model="form.title" size="medium" placeholder="标题..."></el-input>
                         </el-form-item>
                         <el-form-item label="E-email" prop="title">
-                            <el-autocomplete class="inputWidth500" v-model="form.email" :fetch-suggestions="handleSearch2" placeholder="敢问英雄是否愿意留下邮箱">
+                            <el-autocomplete class="inputWidth500" v-model="form.email" size="medium" :fetch-suggestions="handleSearch2" placeholder="敢问英雄是否愿意留下邮箱">
                                 <!-- <el-option v-for="item in data2" :value="item" :key="item" >{{ item }}</el-option> -->
                             </el-autocomplete>
                         </el-form-item>  
                         <el-form-item label="文章类型" prop="title" >
                             <el-tag v-for="item in form.classify" class="marginright15" size="medium" type='' :key="item" :name="item" :disable-transitions="false" closable  @close="handleClose(item)">{{ item}}</el-tag>
-                            <el-select  class="inputWidth150 marginright15" @change="selectChange" v-model="classify">
+                            <el-select  class="inputWidth150 marginright15" @change="selectChange" v-model="classify" size="large">
                                 <el-option v-for="(item, index) in classifyList" :value="item" :key="index" :label="item"></el-option>
                             </el-select>
-                            <el-input v-model="classify" placeholder="请填写文章类型" clearable class="inputWidth150 marginright15"  @on-enter="inputChange" @on-blur="inputChange"></el-input>
+                            <el-input v-model="classify" placeholder="请填写文章类型" size="medium" clearable class="inputWidth150 marginright15"  @on-enter="inputChange" @on-blur="inputChange"></el-input>
                         </el-form-item>
                         <el-form-item label="封面图" prop="title">
                             <el-upload
@@ -246,8 +246,11 @@ import { imgupload,article_add } from "@/api/article";
 	}
 	
 	.submit button {
-		width: 20%;
-		margin: 20px;
+		display:block;
+		width:250px;
+		height:45px;
+		margin: 50px 0 0 20px;
+		font-size:16px;
 	}
 	
 	.inputWidth150 {
@@ -259,17 +262,17 @@ import { imgupload,article_add } from "@/api/article";
 .marginright15{
     margin-right:10px;
 }
-.avatar-uploader .el-upload {
+ .posteditContent .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
   }
-  .avatar-uploader .el-upload:hover {
+   .posteditContent .avatar-uploader .el-upload:hover {
     border-color: #409EFF;
   }
-  .avatar-uploader-icon {
+   .posteditContent .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
     width: 120px;
@@ -277,7 +280,7 @@ import { imgupload,article_add } from "@/api/article";
     line-height: 120px;
     text-align: center;
   }
-  .avatar {
+   .posteditContent .avatar {
     width: 120px;
     height: 120px;
     display: block;

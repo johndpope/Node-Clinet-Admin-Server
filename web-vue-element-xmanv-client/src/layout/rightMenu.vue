@@ -33,28 +33,27 @@
                     <div class="sidebar-block__title">标签</div>
                     <div class="sidebar-block__content">
                         <div id="tag-box">
-                            <router-link to="/share/share/share"  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">Node</span>
                             </router-link>
-                            <router-link to="/index/index"  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">BUE</span>
                             </router-link>
-                            <router-link to="/share/share/share"  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">Koa</span>
                             </router-link>
-                            <router-link to="/userManager/userList"  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">Webpack</span>
                             </router-link>
-                            <router-link to="/index/index
-                            "  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">Webpack</span>
                             </router-link>
-                            <router-link to="/share/share/share"  class="com-icon tag-item">
+                            <router-link to="/"  class="com-icon tag-item">
                                 <i class="com-icon__pic" style="background-image: url(${host}/${tag_item.img})"></i>
                                 <span class="com-icon__text">Webpack</span>
                            </router-link>
@@ -72,10 +71,8 @@
 import { mapGetters } from 'vuex'
 import * as mUtils from "@/utils/mUtils";
 import logoImg from "@/assets/img/logo.png";
-
-
 export default {
-  name: "left-Menu",
+  name: "right-Menu",
   data() {
     return {
        menuObj:{

@@ -8,6 +8,7 @@ Vue.use(ElementUI, { size: 'mini'});
 import('element-ui/lib/theme-chalk/index.css')
 // 引入自己阿里图标库
 import './assets/fonts/iconfont.css';
+
 import './components/iconSvg' // iconSvg
 
 import '@/permission' // permission control

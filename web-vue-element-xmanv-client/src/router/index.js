@@ -104,7 +104,7 @@ export const constantRouterMap = [
 		]
 	},
 	{
-		path:'/share/share',
+		path:'/share',
 		name: 'share',
 		component:Layout,
 		meta: {
@@ -146,7 +146,7 @@ export const asyncRouterMap = [
 		name: 'share',
 		component:Layout,
 		meta: {
-			title:'分享功能',
+			title:'其他',
 			icon: 'iconshare',
 			roles: ['admin']
 			
@@ -156,7 +156,7 @@ export const asyncRouterMap = [
 			{
 				path:'share2', 
 				meta:{
-				  title:'分享功能', 
+				  title:'其他', 
 				  icon:'iconshare',
 				  routerType:'leftmenu',
 				  roles: ['admin']

@@ -3,7 +3,7 @@
 			<main id="main-wrap">
 				<section id="main-box">
 						<div id="markdown-wrap" class="clear">
-							<div id="markdown-main" class="markdown-main com-block">
+							<div id="markdown-main" :class="['markdown-main','com-block',{'fullscreen':!catalog.length}]">
 								<!-- 文字标题 -->
 								<div class="markdown-title">
 									<h1>{{Article_detail.title}}</h1>
@@ -48,7 +48,7 @@
 								</div> -->
 							</div>
 							<!-- 目录 -->
-							<div class="markdown-action com-scroll">
+							<div class="markdown-action com-scroll" v-if="catalog.length">
 								<div class="markdown-action-wrap">
 									<div class="mb20">
 										<div class="markdown-catalog com-block">
@@ -214,6 +214,7 @@
 	box-sizing: border-box;
 	padding: 15px 18px;
 }
+
 /* 文章主要内容 */
 
 #markdown-main {
@@ -224,6 +225,9 @@
     padding-bottom: 0;
     top:0px;
     transition: top 0.25s;
+    &.fullscreen{
+       width: 100%; 
+    }
     /* 标题 */
     .markdown-title {
         margin-bottom: 16px;

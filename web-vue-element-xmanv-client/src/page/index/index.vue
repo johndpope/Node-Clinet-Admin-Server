@@ -22,7 +22,7 @@
 								</div>
 							</router-link>
 							<div class="art-meta">
-								<a href="javascript:;" class="art-heart heart-box mr20" >
+								<a href="javascript:;" :class="['art-heart heart-box mr20',{'act':item.isactive}]" @click="likeEvent(index)" >
 									<i class="heart-icon__pic"></i>
 									<span class="heart-icon__text">喜欢(<span class="like-num">50</span>)</span>
 								</a>
@@ -98,9 +98,16 @@
                     } 
                 )
             },
+            // 点赞
+            likeEvent(index){
+                this.Article_list[index].isactive=!this.Article_list[index].isactive
+            },
 			Getarticle_list(params) {
 				article_list(params).then(res => {
 					this.Article_list=res.Data.items;
+                    this.Article_list=this.Article_list.map(item=>{
+                        return {...item,...{'isactive':false}}
+                    })
 					this.pageTotal=res.total_row;
 				})
 			}

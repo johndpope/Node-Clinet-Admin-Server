@@ -1,50 +1,5 @@
 <template>
    <div class="menu_left cflex" :style="{width:'250px'}">
-        <!-- <div class="menu_page_top rflex">
-            <img :class='["logo",{"closeLogo":!sidebar.opened}]' :src="logo" alt="漫威admin" >
-            <span class='title' v-show="sidebar.opened">{{$t('commons.xiaoai')}}<i>Admin</i></span>
-        </div>
-        <div class="menu_page_bottom add is-scroll-left">
-            <el-menu 
-                mode="vertical"
-                theme="dark" 
-                :show-timeout="200"
-                :default-active="$route.path" 
-                :collapse="isCollapse"
-                :background-color="menuObj.bgColor"
-                :text-color="menuObj.textColor"
-                :active-text-color="menuObj.activeTextColor"
-                :style="{width:'220px'}"
-                >
-                    <template v-for="(item,index) in permission_routers">
- 
-                        <router-link v-if="!item.hidden && item.noDropdown" :to="item.path+'/'+item.children[0].path" :key="index">
-                            <el-menu-item class="dropItem" 
-                                :index="item.path+'/'+item.children[0].path"
-                                >
-                                <icon-svg v-if="item.meta.icon" :icon-class="item.meta.icon" />
-                                <span v-if="item.meta.title" slot="title">{{ $t(`commons.${item.name}`)}}</span> 
-                            </el-menu-item>
-                        </router-link>
-
-              
-                        <el-submenu v-if="item.children  && item.children.length >= 1 && !item.hidden && !item.noDropdown"  :index="item.path" :key="index">
-                            <template slot="title">
-                                <icon-svg v-if="item.meta.icon" :icon-class="item.meta.icon" />
-                                <span v-if="item.meta.title" slot="title">{{ $t(`commons.${item.name}`)}}</span>
-                            </template>
-               
-                            <router-link v-for="(citem,cindex) in item.children" :to="getIindex(citem,item,cindex)"  :key="cindex">
-                                <el-menu-item 
-                                    v-if="citem.meta.routerType != 'topmenu' && citem.meta.title"
-                                    :index="getIindex(citem,item,cindex)">
-                                    <span slot="title"> {{ $t(`commons.${citem.name}`)}}</span>
-                                </el-menu-item> 
-                            </router-link>
-                        </el-submenu>
-                    </template>
-            </el-menu>
-        </div> -->
         <div class="menu_page_bottom is-scroll-left">
             <aside id="intrude-box" class="mask ">
                 <!-- 侧边栏图片 -->
@@ -54,21 +9,23 @@
                     <div id="intrude-inner">
                         <!-- 头像 -->
                         <h1 id="head-portrait">
-                            <a href="/" id="portrait-logo">web前端工程师博客</a>
+                            <a href="javascript:;" id="portrait-logo" @click="setDialogInfo('logout')">
+                                <img :src="avatar" class='avatar' alt="">
+                            </a>
                         </h1>
                         <div id="intrude-info">
                             <!-- 昵称 -->
                             <div id="author" title="">XMAN</div>
                             <!-- 介绍 -->
                             <h2 id="intrude-text" title="">
-                                <a href="/">
+                                <a href="javascript:;">
                                         兰尼斯特
                                 </a>
                             </h2>
                             <!-- 导航 -->
                             <nav id="nav-menu">
                                 <ul id="nav-list">
-                                    <li class="nav-item"  v-for="(item,index) in permission_routers">
+                                    <li class="nav-item"  v-for="(item,index) in permission_routers" :key="index">
                                         <router-link v-if="!item.hidden && item.noDropdown" :to="getPath(item)" :key="index" class="nav-outer">
                                             <span class="nav-inner">
                                                 <!-- <i class="nav-icon "></i> -->
@@ -81,12 +38,66 @@
                             </nav>
                             <!-- 联系方式 -->
                             <div id="contact-box">
-                                <i class="xiconfont xiconweixin" ></i>
+                                <!-- <i class="xiconfont xiconweixin" ></i>
                                 <i class="xiconfont xiconicon" ></i>
                                 <a href="https://github.com/chandlerCao" target="_blank" >
                                     <i class="xiconfont xicongithub"></i>
                                 </a>
-                                <i class="xiconfont xiconweibo"></i>
+                                <i class="xiconfont xiconweibo"></i> -->
+                                <ul class="top-menu">
+                                    <li class="li-badge">
+                                        <el-tooltip class="item" effect="dark" content="访问github" placement="bottom">
+                                            <a :href='github' target="_blank">
+                                                <icon-svg icon-class="iconGithub" />
+                                            </a>
+                                        </el-tooltip>
+                                    </li>
+                                    <li class="li-badge">
+                                        <a :href='github' target="_blank" v-popover:qcode>
+                                            <icon-svg icon-class="iconwechat" />
+                                            <el-popover
+                                                ref="qcode"
+                                                popper-class="qcodepopper"
+                                                placement="bottom"
+                                                trigger="hover">
+                                                    <div class="wechat-area cflex">
+                                                        <p class="titles">加我微信</p>
+                                                        <img :src="wechat.wechatImg" alt="加我微信"  />
+                                                    </div>
+                                        </el-popover>
+                                        </a>
+                                    </li>
+                                    <li class="li-badge">
+                                        <a :href='github' target="_blank" v-popover:qqcode>
+                                            <icon-svg icon-class="iconqq" />
+                                            <el-popover
+                                                ref="qqcode"
+                                                popper-class="qcodepopper"
+                                                placement="bottom"
+                                                trigger="hover">
+                                                    <div class="wechat-area cflex">
+                                                        <p class="titles">加入qq群</p>
+                                                        <img :src="qq.qqImg" alt="加入qq群"  />
+                                                    </div>
+                                            </el-popover>
+                                        </a>
+                                    </li>
+                                    <li class="li-badge">
+                                        <a :href='github' target="_blank" v-popover:weibocodes>
+                                            <icon-svg icon-class="iconweibo" />
+                                            <el-popover
+                                                ref="weibocodes"
+                                                popper-class="qcodepopper"
+                                                placement="bottom"
+                                                trigger="hover">
+                                                    <div class="wechat-area cflex">
+                                                        <p class="titles">关注微博</p>
+                                                        <img :src="weibo.weiboImg" alt="加入qq群"  />
+                                                    </div>
+                                            </el-popover>
+                                        </a>
+                                    </li>
+                                </ul>   
                             </div>
                         </div>
                         
@@ -101,6 +112,13 @@
 import { mapGetters } from 'vuex'
 import * as mUtils from "@/utils/mUtils";
 import logoImg from "@/assets/img/logo.png";
+import wechatImg from "@/assets/img/wechat.jpg";
+import qqImg from "@/assets/img/qq.jpg";
+import weibo from "@/assets/img/weibo.jpg";
+import { setToken,getToken } from '@/utils/auth';
+import chinaImg from "@/assets/img/china.svg";
+import americaImg from "@/assets/img/america.svg";
+import { github } from "@/utils/env";
 
 
 export default {
@@ -112,7 +130,26 @@ export default {
          textColor:'#666',
          activeTextColor:'#ff6428',
        },
-       logo:logoImg
+       logo:logoImg,
+       langLogo:getToken('langLogo') || americaImg,
+       chinaImg:chinaImg,
+       americaImg:americaImg,
+       wechat:{
+            wechatImg:wechatImg,
+            isWechat:false
+        },
+        qq:{
+            qqImg:qqImg,
+            isQq:false,
+        },
+        weibo:{
+            weiboImg:weibo,
+            isweibo:false,
+        },
+        github:github,
+        menu:{
+            userBgcolor:'#f0f2f5'
+        }
     };
   },
   computed:{
@@ -120,7 +157,8 @@ export default {
         'permission_routers',
         'isCollapse',
         'sidebar',
-        'menuIndex'
+        'menuIndex',
+        'avatar'
       ]),
   },
   created(){
@@ -128,6 +166,25 @@ export default {
   mounted(){
   },
   methods: {
+    setDialogInfo(cmditem) {
+            switch (cmditem) {
+                case 'info':
+                    this.$router.push('/infoManage/infoShow/infoShow1');
+                    break;
+                case 'pass':
+                    this.$router.push('/infoManage/infoModify/infoModify1');
+                    break;
+                case 'logout':
+                    this.logout();
+                    break;
+            }
+    },
+    logout(){
+        this.$store.dispatch('LogOut').then((res) => {
+        //   location.reload();
+        this.$router.push('/login')
+        })
+    },
     getIindex(citem,item,cindex){
       return (citem.meta.titleList)?item.path+'/'+citem.path+'/'+citem.meta.titleList[0].path:item.path+'/'+citem.path;
     },
@@ -347,8 +404,8 @@ export default {
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../assets/img/me.jpg);
-    text-indent: -20000px;
+    // background-image: url(../assets/img/me.jpg);
+    // text-indent: -20000px;
 }
 
 //导航栏出场动画
@@ -507,28 +564,37 @@ export default {
 
 /* 联系方式 */
 
-#contact-box {
-    width: 200px;
-    display: flex;
-    justify-content: space-around;
-    margin: 30px auto 0;
+// #contact-box {
+//     width: 200px;
+//     display: flex;
+//     justify-content: space-around;
+//     margin: 30px auto 0;
     
-}
+// }
 
-#contact-box .xiconfont {
-    display: inline-block;
-    position: relative;
-    width: 24px;
-    height: 24px;
-    background-size: cover;
-    cursor: pointer;
-    transition: .2s;
-    font-size: 25px;
-    color:#303133;
-}
+// #contact-box .xiconfont {
+//     display: inline-block;
+//     position: relative;
+//     width: 24px;
+//     height: 24px;
+//     background-size: cover;
+//     cursor: pointer;
+//     transition: .2s;
+//     font-size: 25px;
+//     color:#303133;
+// }
 
-#contact-box .xiconfont:hover {
-    transform: scale(1.2);
+// #contact-box .xiconfont:hover {
+//     transform: scale(1.2);
+// }
+
+#contact-box .top-menu{
+    padding:0 25px;
+    margin-top:25px;
+    display:flex;
+    justify-content: space-around;
+
+
 }
 
 

@@ -2,7 +2,7 @@
     <div class="home rflex">
         <left-menu></left-menu>
         <div class="menu_right wflex el-scrollbar" id='myScrollbar' :style="{'width':headNavWidth+'px'}" ref="menu_right" >
-            <head-nav></head-nav>
+            <!-- <head-nav></head-nav> -->
             <div class="menu_content" ref="menu_content">
                 <!-- <bread></bread> -->
                  
@@ -229,7 +229,7 @@
             background:#F6F7FC;
             .menu_content{
                 position: relative;
-                margin-top:60px;
+                margin-top:20px;
                 overflow: hidden;
                 width:100%;
                 // background:#f0f2f5;
