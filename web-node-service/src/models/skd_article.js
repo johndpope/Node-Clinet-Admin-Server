@@ -51,6 +51,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			defaultValue: '0'
 		},
+		star: {
+			type: DataTypes.INTEGER(10),
+			allowNull: true,
+			defaultValue: '0'
+		},
 		number: {
 			type: DataTypes.INTEGER(20),
 			allowNull: true,

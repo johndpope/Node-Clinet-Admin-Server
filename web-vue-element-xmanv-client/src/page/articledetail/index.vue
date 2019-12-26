@@ -84,7 +84,8 @@
 </template>
 
 <script>
-    import { article_detail } from "@/api/article";
+    import { article_detail,article_updatnumber } from "@/api/article";
+    import moment from "moment";
     export default {
     	data(){
     		return {
@@ -178,8 +179,20 @@
                 } 
             },
             Getarticle_detail() {
-				article_detail( this.urlId).then(res => {
-					this.Article_detail=res.Data;
+				article_detail(this.urlId).then(res => {
+                    this.Article_detail=res.Data;
+                    this.addReadnumbers(res.Data);
+				})
+            },
+            addReadnumbers(params) {
+				article_updatnumber( {
+						id: params.id,
+						number: (params.number-0) + 1
+					}
+				).then(res => {
+                    this.Article_detail.number++
+				}).catch(err => {
+					console.log("失误：" + err);
 				})
 			},
             scrollEvent(index){

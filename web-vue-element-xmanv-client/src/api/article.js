@@ -29,4 +29,19 @@ export function article_add(params) {
       data:params
     })
 }
+export function article_star(params) {
+  return  axios({
+      url: `http://localhost:8081/api/star`,
+      method: 'post',
+      data:params
+    })
+}
+export function article_updatnumber(params) {
+  return  axios({
+      url: `http://localhost:8081/api/update`,
+      method: 'post',
+      data:params
+    })
+}
+
 

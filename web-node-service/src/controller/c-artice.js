@@ -151,7 +151,7 @@ const articleList = async ctx => {
 }
 
 /**
- *更新文章
+ *更新文章阅读数量
  */
 const articleUpdate = async ctx => {
 	let body = ctx.data
@@ -175,6 +175,32 @@ const articleUpdate = async ctx => {
 			throw new exception.erroeException(consts.ERROR_CODE.INTERNAL_SERVER_ERROR, sequelizeUtils.validation(ex))
 		})
 }
+/**
+ *为文章点赞
+ */
+const articlestar = async ctx => {
+	let body = ctx.data
+	let time = Date.parse(new Date()) / 1000
+	await Article.update({
+			...body,
+			update_time: time,
+		}, {
+			where: {
+				id: body.id
+			}
+		})
+		.then(su => {
+			// increment findOne返回后可以直接调用
+			
+			var code = su[0] ? consts.ERROR_CODE.SUCCESS : consts.ERROR_CODE.INTERNAL_SERVER_ERROR;
+			var message = su[0] ? '点赞成功' : '点赞失败'
+			ctx.body = extend.resultData(code, message)
+		})
+		.catch(ex => {
+			throw new exception.erroeException(consts.ERROR_CODE.INTERNAL_SERVER_ERROR, sequelizeUtils.validation(ex))
+		})
+}
+
 /**
  *删除文章
  */
@@ -202,5 +228,6 @@ module.exports = {
 	['POST article_list']: articleList,
 	['POST search']: articleList,
 	['POST update']: articleUpdate,
+	['POST star']: articlestar,
 	['GET del/:id']: articleDelete,
 };

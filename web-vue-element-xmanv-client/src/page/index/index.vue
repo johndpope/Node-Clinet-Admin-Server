@@ -6,7 +6,7 @@
 						<div class="art-pretty">
 							<b class="art-dotts"></b>
 							<time class="art-time">
-								{{item.create_time}}
+								{{ returnDate(item.create_time)}}
 							</time>
 						</div>
 						<div class="art-main com-block">
@@ -22,13 +22,13 @@
 								</div>
 							</router-link>
 							<div class="art-meta">
-								<a href="javascript:;" :class="['art-heart heart-box mr20',{'act':item.isactive}]" @click="likeEvent(index)" >
+								<a href="javascript:;" :class="['art-heart heart-box mr20',{'act':item.isactive}]" @click="likeEvent(item,index)" >
 									<i class="heart-icon__pic"></i>
-									<span class="heart-icon__text">喜欢(<span class="like-num">50</span>)</span>
+									<span class="heart-icon__text">喜欢(<span class="like-num">{{item.star}}</span>)</span>
 								</a>
 								<a href="javascript:;" class="com-icon art-comment art-icon mr20">
 									<i class="com-icon__pic eye-icon"></i>
-									<span class="com-icon__text">阅读(50)</span>
+									<span class="com-icon__text">阅读({{item.number}})</span>
 								</a>
 								<a href="" class="com-icon art-tag art-icon mr20">
 									<i class="com-icon__pic tag-icon" ></i>
@@ -48,12 +48,13 @@
 	import { mapGetters } from "vuex";
 	import Pagination from "@/components/pagination";
 	import { login } from "@/api/user";
-	import { article_list } from "@/api/article";
+    import { article_list ,article_star} from "@/api/article";
+    import moment from "moment";
     export default {
     	data(){
     		return {
 			  pageTotal:100,
-			  Article_list:{}
+              Article_list:{}
     		}
     	},
     	components: {
@@ -71,6 +72,9 @@
                     } )
 		},
     	methods: {
+            returnDate(time){
+                return moment((time-0)*1000).format('YYYY-MM-DD HH:mm:ss')
+            },
 			formDateImgurl(url){
 				return `http://localhost:8081${url}` 
 			},
@@ -99,8 +103,16 @@
                 )
             },
             // 点赞
-            likeEvent(index){
-                this.Article_list[index].isactive=!this.Article_list[index].isactive
+            likeEvent(item,index){
+                if(!item.isactive){
+                    article_star(
+                        {"id":item.id,"star":(item.star-0)+1}
+                    ).then(res => {
+                        this.Article_list[index].star++
+                        this.Article_list[index].isactive=true;
+                    })
+                }
+                
             },
 			Getarticle_list(params) {
 				article_list(params).then(res => {

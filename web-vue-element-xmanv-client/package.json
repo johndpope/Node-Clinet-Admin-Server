@@ -20,6 +20,7 @@
     "js-cookie": "^2.2.1",
     "mavon-editor": "^2.7.7",
     "mockjs": "^1.0.1-beta3",
+    "moment": "^2.24.0",
     "node-uuid": "^1.4.8",
     "nprogress": "^0.2.0",
     "qrcodejs2": "0.0.2",
